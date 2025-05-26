@@ -1,0 +1,79 @@
+<div class="px-4 space-y-6 sm:px-5 lg:px-6 md:space-y-6">
+  <div class="space-y-4">
+    <!-- breadcrumbs -->
+    <nav>
+      <ol role="list" class="flex items-center space-x-3">
+        <li>
+          <div class="flex items-center">
+            <.link
+              href={~p"/admin/registries/companies"}
+              class="text-sm font-medium text-gray-500 hover:text-gray-700"
+            >
+              Companies
+            </.link>
+          </div>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-gray-400"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                clip-rule="evenodd"
+              >
+              </path>
+            </svg>
+            <span class="ml-3 text-sm font-semibold text-primary-500 hover:text-gray-700">
+              <%= @business.name %>
+            </span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+    <!-- breadcrumbs -->
+    <div class="pb-3 mb-4 border-b md:flex md:items-end md:justify-between">
+      <div class="flex-1 min-w-0">
+        <h3 class="text-lg sm:text-xl lg:text-2xl font-semibold text-primary-500 tracking-[-2%]">
+          <%= @business.name %>
+        </h3>
+        <p class="text-sm text-gray-600 sm:text-base sm:max-w-lg">
+          View all information about <span class="font-semibold"><%= @business.name %></span>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <!-- Tab Navigation -->
+    <.live_component
+      module={BrsWeb.Components.BusinessProfileComponent}
+      id="business-profile"
+      business={@business}
+    >
+      <.live_component
+        module={BrsWeb.Components.BussinessTabComponent}
+        tabs={@tabs}
+        active_tab={@active_tab}
+        mobile_active_tab={@mobile_active_tab}
+        id="company-tabs"
+      />
+    </.live_component>
+    <div>
+      <!-- tab 1 -->
+      <%= for tab <- @tabs do %>
+        <section :if={@active_tab == tab.id || @mobile_active_tab == tab.id}>
+          <.live_component
+            module={tab.mod}
+            id={"company-tab-#{tab.id}"}
+            business={@business}
+          />
+        </section>
+      <% end %>
+    </div>
+  </div>
+</div>

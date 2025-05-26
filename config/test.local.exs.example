@@ -1,0 +1,6 @@
+import Config
+
+config :brs, Brs.Repo,
+  username: "postgres",
+  password: "",
+  database: "brs_test"

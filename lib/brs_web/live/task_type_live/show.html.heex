@@ -1,0 +1,146 @@
+<div class="flex flex-col mb-4 mt-5">
+  <div class="sm:overflow-auto lg:overflow-visible">
+    <!-- Action Section -->
+    <div class="hidden w-full align-middle sm:block">
+      <div class="pb-4 shadow  ring-1 ring-black ring-opacity-5 sm:pb-0 rounded-lg divide-y divide-gray-200">
+        <.header class="px-4 py-4 mb-2 mt-2">
+          <:subtitle>Actions.</:subtitle>
+          <:actions>
+            <.link phx-click={JS.push("add-action")}>
+              <.button>Add Action</.button>
+            </.link>
+          </:actions>
+        </.header>
+        <table class="min-w-full divide-y divide-gray-300 table-auto">
+          <thead class="bg-gray-50">
+            <tr>
+              <th
+                scope="col"
+                class="py-2.5 pl-4 pr-3 text-left text-sm font-medium text-gray-600 sm:pl-4"
+              >
+                Name
+              </th>
+
+              <th scope="col" class="px-3 py-2.5 text-sm font-medium text-gray-600 text-right">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <%= for action <- @task_type.actions do %>
+              <tr id={"action-#{action.id}"}>
+                <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-4">
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">
+                      <%= action.label %>
+                    </p>
+                  </div>
+                </td>
+
+                <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap text-right">
+                  <div class="inline-flex justify-end items-center space-x-3 text-right">
+                    <.link
+                      phx-click={JS.push("edit-action")}
+                      phx-value-id={action.id}
+                      class="inline-flex items-center rounded-md border border-primary-500 bg-white px-3 py-2 text-sm font-medium leading-4 text-primary-500 shadow-sm hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+                    >
+                      Edit
+                    </.link>
+                    <.link
+                      phx-click={JS.push("delete-action", value: %{id: action.id})}
+                      data-confirm="Are you sure?"
+                      class="items-center min-w-[70px] text-center px-3.5 py-2 border border-red-300 rounded-md shadow-sm text-sm font-medium text-gray-700
+                bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
+                    >
+                      Delete
+                    </.link>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Roles Section -->
+    <div class="hidden w-full align-middle sm:block">
+      <div class="pb-4 shadow  ring-1 ring-black ring-opacity-5 sm:pb-0 rounded-lg divide-y divide-gray-200">
+        <.header class="px-4 py-4 mb-2 mt-2">
+          <:subtitle>Roles.</:subtitle>
+          <:actions>
+            <.link phx-click="add-roles">
+              <.button>Add Role</.button>
+            </.link>
+          </:actions>
+        </.header>
+        <table class="min-w-full divide-y divide-gray-300 table-auto">
+          <thead class="bg-gray-50">
+            <tr>
+              <th
+                scope="col"
+                class="py-2.5 pl-4 pr-3 text-left text-sm font-medium text-gray-600 sm:pl-4"
+              >
+                Role
+              </th>
+
+              <th scope="col" class="px-3 py-2.5 text-sm font-medium text-gray-600 text-right">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <%= for role <- @task_type.roles do %>
+              <tr id={"role-#{role.id}"}>
+                <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-4">
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">
+                      <%= role.role.name %>
+                    </p>
+                  </div>
+                </td>
+
+                <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap text-right">
+                  <div class="inline-flex justify-end items-center space-x-3 text-right">
+                    <.link
+                      phx-click={JS.push("delete-role", value: %{id: role.id})}
+                      data-confirm="Are you sure?"
+                      class="items-center min-w-[70px] text-center px-3.5 py-2 border border-red-300 rounded-md shadow-sm text-sm font-medium text-gray-700
+                bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
+                    >
+                      Delete
+                    </.link>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div :if={@show_action_modal && @live_action in [:new, :edit]}>
+  <.live_component
+    module={BrsWeb.TaskTypeLive.ActionFormComponent}
+    id={@task_type.id}
+    task_type_id={@task_type.id}
+    title={@page_title}
+    action={@live_action}
+    task_type_action={@task_type_action}
+    show_action_modal={@show_action_modal}
+  />
+</div>
+
+<div :if={@show_role_modal && @live_action in [:new, :edit]}>
+  <.live_component
+    module={BrsWeb.TaskTypeLive.RoleFormComponent}
+    id={@task_type.id}
+    task_type_id={@task_type.id}
+    title={@page_title}
+    action={@live_action}
+    task_type_role={@task_type_role}
+    show_role_modal={@show_role_modal}
+    service_id={@service_id}
+  />
+</div>

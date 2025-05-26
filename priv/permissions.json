@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Manage Services",
+    "key": "services.manage",
+    "description": "Edit basic details of an existing service",
+    "registries": [
+      "system"
+    ]
+  },
+  {
+    "name": "Configure Services",
+    "key": "services.configure",
+    "description": "Create new service, edit form and workflows",
+    "registries": [
+      "system"
+    ]
+  },
+  {
+    "name": "Manage Registries",
+    "key": "registries.manage",
+    "registries": ["system"]
+  },
+  {
+    "name": "View Staff",
+    "key": "staff.view",
+    "registries": [
+      "brs",
+      "mpsr",
+      "hp",
+      "or",
+      "system"
+    ]
+  },
+  {
+    "name": "View Client",
+    "key": "client.view",
+    "registries": [
+      "brs",
+      "mpsr",
+      "hp",
+      "or",
+      "system"
+    ]
+  },
+  {
+    "name": "Manage Roles",
+    "key": "roles.manage",
+    "registries": [
+      "brs",
+      "mpsr",
+      "hp",
+      "or",
+      "system"
+    ]
+  },
+  {
+    "name": "View Business",
+    "key": "business.view",
+    "registries": [
+      "brs",
+      "mpsr",
+      "hp",
+      "or"
+    ]
+  },
+  {
+    "name": "View Name Search",
+    "key": "name_search.view",
+    "registries": [
+      "brs"
+    ]
+  },
+  {
+    "name": "View Business Owner",
+    "key": "business_owner.view",
+    "registries": [
+      "brs"
+    ]
+  },
+  {
+    "name": "View Business Owner Address",
+    "key": "business_owner.address.view",
+    "registries": [
+      "brs"
+    ]
+  },
+  {
+    "name": "View Beneficial Owner",
+    "key": "beneficial_owner.view",
+    "registries": [
+      "brs"
+    ]
+  }
+]

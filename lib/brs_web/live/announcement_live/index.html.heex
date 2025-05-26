@@ -1,0 +1,401 @@
+<div class="px-4 space-y-4 sm:px-5 lg:px-6 md:space-y-4">
+  <div class="items-center justify-between pb-4 space-y-3 border-b border-gray-300 sm:flex sm:space-y-0 sm:space-x-4">
+    <div>
+      <p class="mb-1 text-lg font-semibold leading-none sm:text-xl lg:text-2xl text-primary-500">
+        Announcements
+      </p>
+      <p class="mt-0 text-sm text-gray-500">View and manage system announcements</p>
+    </div>
+    <div>
+      <.link
+        href={~p"/admin/announcements/new"}
+        class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white border rounded-md shadow-sm border-primary-500 bg-primary-500 hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+      >
+        Create Announcement
+      </.link>
+    </div>
+  </div>
+  <div class="space-y-4 md:space-y-6">
+    <div class="flex-1">
+      <form class="flex w-full md:ml-0" action="#" method="GET">
+        <label for="search-field" class="sr-only">Search</label>
+        <div class="relative w-full text-gray-400 bg-white rounded-full focus-within:text-gray-600">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.5 17.5L14.5834 14.5833M16.6667 9.58333C16.6667 13.4954 13.4954 16.6667 9.58333 16.6667C5.67132 16.6667 2.5 13.4954 2.5 9.58333C2.5 5.67132 5.67132 2.5 9.58333 2.5C13.4954 2.5 16.6667 5.67132 16.6667 9.58333Z"
+                stroke="#9CA3AF"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+              </path>
+            </svg>
+          </div>
+          <input
+            id="search-field"
+            value=""
+            class="block w-full py-3 pl-10 pr-3 leading-5 text-gray-900 placeholder-gray-400 border-0 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-gray-500 sm:text-base sm:leading-5"
+            placeholder="Search by name, reg no"
+            type="search"
+            name="search"
+          />
+        </div>
+      </form>
+    </div>
+    <!-- table section -->
+    <section>
+      <div class="space-y-4 md:space-y-4">
+        <div>
+          <!-- table content -->
+          <div class="flex flex-col mb-4">
+            <div class="sm:overflow-auto lg:overflow-visible">
+              <!-- Table Desktop -->
+              <div class="hidden w-full align-middle sm:block">
+                <div class="pb-4 divide-y divide-gray-200 rounded-lg shadow sm:overflow-x-auto ring-1 ring-black ring-opacity-5 sm:pb-0">
+                  <table class="min-w-full divide-y divide-gray-300 table-auto">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th
+                          scope="col"
+                          class="py-2.5 pl-4 pr-3 text-left text-sm font-medium text-gray-600 sm:pl-6"
+                        >
+                          Title
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-3 py-2.5 text-left text-sm font-medium text-gray-600"
+                        >
+                          Displayed on
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-3 py-2.5 text-left text-sm font-medium text-gray-600"
+                        >
+                          Created on
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-3 py-2.5 text-left text-sm font-medium text-gray-600"
+                        >
+                          Expires on
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-3 py-2.5 text-left text-sm font-medium text-gray-600"
+                        >
+                          Status
+                        </th>
+                        <th
+                          scope="col"
+                          class="px-3 py-2.5 text-sm font-medium text-gray-600 text-right"
+                        >
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                      <tr>
+                        <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6">
+                          <div>
+                            <p class="text-sm font-medium text-gray-900">
+                              Link a Business Service Announcement
+                            </p>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 text-sm text-gray-500">
+                          <div>
+                            <p class="text-sm font-normal text-gray-500">
+                              Front end, Back end
+                            </p>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 text-sm text-gray-500">
+                          <div>
+                            <p class="text-sm font-normal text-gray-500">
+                              19 Aug 2024
+                            </p>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 text-sm text-gray-500">
+                          <div>
+                            <p class="text-sm font-normal text-gray-500">
+                              19 Aug 2024
+                            </p>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 text-sm text-gray-500">
+                          <div>
+                            <span class="inline-flex items-center gap-x-1.5 rounded-md px-0 py-1 text-xs font-medium text-orange-700 ring-1 ring-inset ring-transparent">
+                              <svg
+                                class="h-1.5 w-1.5 fill-orange-400"
+                                viewBox="0 0 6 6"
+                                aria-hidden="true"
+                              >
+                                <circle cx="3" cy="3" r="3" />
+                              </svg>
+                              Not published
+                            </span>
+                          </div>
+                        </td>
+                        <td class="px-4 py-4 text-sm text-right text-gray-500 whitespace-nowrap">
+                          <div class="inline-flex items-center justify-end space-x-3 text-right">
+                            <.link
+                              href={~p"/admin/announcements/1/edit"}
+                              class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 bg-white border rounded-md shadow-sm border-primary-500 text-primary-500 hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+                            >
+                              View
+                            </.link>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6">
+                          <div>
+                            <p class="text-sm font-medium text-gray-900">
+                              Migration to a new system
+                            </p>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 text-sm text-gray-500">
+                          <div>
+                            <p class="text-sm font-normal text-gray-500">
+                              Front end
+                            </p>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 text-sm text-gray-500">
+                          <div>
+                            <p class="text-sm font-normal text-gray-500">
+                              19 Aug 2024
+                            </p>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 text-sm text-gray-500">
+                          <div>
+                            <p class="text-sm font-normal text-gray-500">
+                              19 Aug 2024
+                            </p>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 text-sm text-gray-500">
+                          <div>
+                            <span class="inline-flex items-center gap-x-1.5 rounded-md px-0 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-transparent">
+                              <svg
+                                class="h-1.5 w-1.5 fill-green-400"
+                                viewBox="0 0 6 6"
+                                aria-hidden="true"
+                              >
+                                <circle cx="3" cy="3" r="3" />
+                              </svg>
+                              Published
+                            </span>
+                          </div>
+                        </td>
+                        <td class="px-4 py-4 text-sm text-right text-gray-500 whitespace-nowrap">
+                          <div class="inline-flex items-center justify-end space-x-3 text-right">
+                            <.link
+                              href={~p"/admin/announcements/1/edit"}
+                              class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 bg-white border rounded-md shadow-sm border-primary-500 text-primary-500 hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+                            >
+                              View
+                            </.link>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- Mobile table -->
+              <div class="divide-y divide-gray-300">
+                <div
+                  x-data="{openCard: false}"
+                  class="block w-full p-3 mx-auto bg-white sm:hidden"
+                >
+                  <button
+                    id="headlessui-disclosure-button-118"
+                    type="button"
+                    aria-expanded="true"
+                    class="flex items-center justify-between w-full text-left rounded-lg focus:outline-none focus-visible:ring focus-visible:ring-primary-600 focus-visible:ring-opacity-75"
+                    aria-controls="headlessui-disclosure-panel-119"
+                  >
+                    <div>
+                      <p class="text-base font-medium text-gray-900">Title</p>
+                      <p class="text-sm font-medium text-gray-700">
+                        Link a Business Service Announcement
+                      </p>
+                    </div>
+                    <span
+                      @click="openCard = !openCard"
+                      class="inline-block p-0.5 border rounded-md border-gray-400"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                        class="w-5 h-5 text-gray-500"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7">
+                        </path>
+                      </svg>
+                    </span>
+                  </button>
+                  <div
+                    x-cloak
+                    x-show="openCard"
+                    x-transition:enter="transform transition ease-in-out duration-75"
+                    x-transition:enter-start=" opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transform transition ease-in-out duration-75"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    id="headlessui-disclosure-panel-119"
+                  >
+                    <div class="grid grid-cols-2 gap-4 pt-4 mt-4 border-t">
+                      <div class="col-span-1">
+                        <p class="text-xs text-gray-600">Title</p>
+                        <p class="text-sm font-medium">Link a Business Service Announcement</p>
+                      </div>
+                      <div class="col-span-1">
+                        <p class="text-xs text-gray-600">Displayed on</p>
+                        <p class="text-sm font-medium">Front end, Back end</p>
+                      </div>
+                      <div class="col-span-1">
+                        <p class="text-xs text-gray-600">Created on</p>
+                        <p class="text-sm font-medium">19 Aug 2024</p>
+                      </div>
+                      <div class="col-span-1">
+                        <p class="text-xs text-gray-600">Expires on</p>
+                        <p class="text-sm font-medium">19 Aug 2024</p>
+                      </div>
+                      <div class="col-span-1">
+                        <p class="text-xs text-gray-600">Status</p>
+                        <div>
+                          <span class="inline-flex items-center gap-x-1.5 rounded-md px-0 py-1 text-xs font-medium text-orange-700 ring-1 ring-inset ring-transparent">
+                            <svg
+                              class="h-1.5 w-1.5 fill-orange-400"
+                              viewBox="0 0 6 6"
+                              aria-hidden="true"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            Not published
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex justify-end pt-4 mt-3 space-x-3 border-t sm:mt-0 sm:ml-4">
+                      <.link
+                        href={~p"/admin/announcements/1/edit"}
+                        class="items-center min-w-[70px] text-center px-3.5 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
+                      >
+                        View
+                      </.link>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  x-data="{openCard: false}"
+                  class="block w-full p-3 mx-auto bg-white sm:hidden"
+                >
+                  <button
+                    id="headlessui-disclosure-button-118"
+                    type="button"
+                    aria-expanded="true"
+                    class="flex items-center justify-between w-full text-left rounded-lg focus:outline-none focus-visible:ring focus-visible:ring-primary-600 focus-visible:ring-opacity-75"
+                    aria-controls="headlessui-disclosure-panel-119"
+                  >
+                    <div>
+                      <p class="text-base font-medium text-gray-900">Title</p>
+                      <p class="text-sm font-medium text-gray-700">Migration to a new system</p>
+                    </div>
+                    <span
+                      @click="openCard = !openCard"
+                      class="inline-block p-0.5 border rounded-md border-gray-400"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                        class="w-5 h-5 text-gray-500"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7">
+                        </path>
+                      </svg>
+                    </span>
+                  </button>
+                  <div
+                    x-cloak
+                    x-show="openCard"
+                    x-transition:enter="transform transition ease-in-out duration-75"
+                    x-transition:enter-start=" opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transform transition ease-in-out duration-75"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    id="headlessui-disclosure-panel-119"
+                  >
+                    <div class="grid grid-cols-2 gap-4 pt-4 mt-4 border-t">
+                      <div class="col-span-1">
+                        <p class="text-xs text-gray-600">Title</p>
+                        <p class="text-sm font-medium">Migration to a new system</p>
+                      </div>
+                      <div class="col-span-1">
+                        <p class="text-xs text-gray-600">Displayed on</p>
+                        <p class="text-sm font-medium">Front end</p>
+                      </div>
+                      <div class="col-span-1">
+                        <p class="text-xs text-gray-600">Created on</p>
+                        <p class="text-sm font-medium">19 Aug 2024</p>
+                      </div>
+                      <div class="col-span-1">
+                        <p class="text-xs text-gray-600">Expires on</p>
+                        <p class="text-sm font-medium">19 Aug 2024</p>
+                      </div>
+                      <div class="col-span-1">
+                        <p class="text-xs text-gray-600">Status</p>
+                        <div>
+                          <span class="inline-flex items-center gap-x-1.5 rounded-md px-0 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-transparent">
+                            <svg
+                              class="h-1.5 w-1.5 fill-green-400"
+                              viewBox="0 0 6 6"
+                              aria-hidden="true"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            Published
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex justify-end pt-4 mt-3 space-x-3 border-t sm:mt-0 sm:ml-4">
+                      <.link
+                        href={~p"/admin/announcements/1/edit"}
+                        class="items-center min-w-[70px] text-center px-3.5 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
+                      >
+                        View
+                      </.link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

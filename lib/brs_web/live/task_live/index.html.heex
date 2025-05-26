@@ -1,0 +1,99 @@
+<main style="min-height: calc(100vh - 64px)" class="py-5 sm:py-6 bg-backdrop">
+  <div class="px-4 space-y-6 sm:px-5 lg:px-6 md:space-y-6">
+    <div class="px-0 pb-3 mt-0 mb-4 border-b border-gray-300">
+      <p class="mb-1 text-lg font-semibold leading-none sm:text-xl lg:text-2xl text-primary-500">
+        Tasks
+      </p>
+      <p class="mt-0 text-sm text-gray-500">View and verify the tasks in the system.</p>
+    </div>
+
+    <div class="space-y-4 md:space-y-4">
+      <div>
+        <!-- mobile Tabs -->
+        <div class="mb-4 lg:hidden">
+          <form phx-change="switch_tab">
+            <label for="tabs" class="sr-only">Select a tab</label>
+            <select
+              id="tabs"
+              name="key"
+              class="block w-full py-2 pl-3 pr-10 text-base border-gray-300 rounded-md focus:border-primary-500 focus:outline-none focus:ring-prborder-primary-500 sm:text-sm"
+            >
+              <%= for {tab, _index} <- Enum.with_index(@tabs) do %>
+                <option value={tab.key} selected={@active_tab == tab.key}>
+                  <%= tab.title %>
+                </option>
+              <% end %>
+            </select>
+          </form>
+        </div>
+        <!-- desktop Tabs -->
+        <div class="hidden lg:block">
+          <div class="mb-6">
+            <nav>
+              <div class="flex space-x-8" aria-label="Tabs">
+                <%= for {tab, _index} <- Enum.with_index(@tabs) do %>
+                  <a
+                    href="#"
+                    phx-click="switch_tab"
+                    phx-value-key={tab.key}
+                    class={[
+                      "whitespace-nowrap px-3 py-2 font-medium rounded-lg text-sm inline-block mr-3 lg:mr-3",
+                      @active_tab == tab.key && "text-primary-500 bg-sky-100",
+                      @active_tab != tab.key &&
+                        "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                    ]}
+                  >
+                    <!-- Title of the Tab -->
+                    <span class="inline-block mr-1"><%= tab.title %></span>
+                    <!-- Notification Count: Only show if greater than 0 -->
+                    <%= if tab.tasks_count > 0 do %>
+                      <span class={[
+                        "inline-flex items-center justify-center px-1 py-1 rounded-2xl text-xs h-5 w-5",
+                        @active_tab == tab.key && "bg-sky-200",
+                        @active_tab != tab.key && "bg-slate-200"
+                      ]}>
+                        <%= tab.tasks_count %>
+                      </span>
+                    <% end %>
+                  </a>
+                <% end %>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <section>
+          <div class="space-y-4 md:space-y-4">
+            <.live_component module={BrsWeb.TaskLive.TaskSearchComponent} id="search" />
+            <!-- Queue Tab -->
+            <%= if @active_tab == :queue do %>
+              <.live_component module={BrsWeb.TaskLive.Tabs.TaskQueueComponent} id={:queue} />
+            <% end %>
+            <!-- Inbox Tab -->
+            <%= if @active_tab == :inbox do %>
+              <.live_component module={BrsWeb.TaskLive.Tabs.TaskInboxComponent} id={:inbox} />
+            <% end %>
+            <!-- Processing Tab -->
+            <%= if @active_tab == :processing do %>
+              <.live_component
+                module={BrsWeb.TaskLive.Tabs.TaskProcessingComponent}
+                id={:processing}
+              />
+            <% end %>
+            <!-- Corrections tab -->
+            <%= if @active_tab == :corrections do %>
+              <.live_component
+                module={BrsWeb.TaskLive.Tabs.TaskCorrectionsComponent}
+                id={:corrections}
+              />
+            <% end %>
+            <!-- Complete Tab -->
+            <%= if @active_tab == :complete do %>
+              <.live_component module={BrsWeb.TaskLive.Tabs.TaskCompleteComponent} id={:complete} />
+            <% end %>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>

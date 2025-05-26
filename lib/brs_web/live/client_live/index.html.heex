@@ -1,0 +1,56 @@
+<div class="px-4 space-y-6 sm:px-5 lg:px-6 md:space-y-6">
+  <div class="px-0 pb-3 mt-0 mb-4 border-b border-gray-300">
+    <div class="items-center justify-between space-y-3 sm:flex sm:space-y-0 sm:space-x-4">
+      <div>
+        <p class="mb-1 text-lg font-semibold leading-none sm:text-xl lg:text-2xl text-primary-500">
+          Clients
+        </p>
+        <p class="mt-0 text-sm text-gray-500">
+          These are the clients who have ever submitted applications to this organization
+        </p>
+      </div>
+      <div>
+        <button
+          phx-click="toggle_blacklist_modal"
+          class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white border rounded-md shadow-sm border-primary-500 bg-primary-500 hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+        >
+          Blacklist a Client
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="space-y-4 md:space-y-4">
+    <div>
+      <.live_component module={BrsWeb.ClientLive.SearchComponent} id="client-search" />
+
+      <.live_component
+        module={BrsWeb.ClientLive.TabsComponent}
+        tabs={@tabs}
+        active_tab={@active_tab}
+        id="client-tabs"
+      />
+
+      <div>
+        <%= for tab <- @tabs do %>
+          <section :if={@active_tab == tab.id}>
+            <.live_component
+              module={tab.mod}
+              id={"client-#{tab.id}"}
+              clients={@clients}
+              current_registry={@current_registry}
+            />
+          </section>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- blacklist modal -->
+<div :if={@show_blacklist_modal}>
+  <.live_component
+    id="blacklist-client"
+    module={BrsWeb.ClientLive.FormComponent}
+    action={@live_action}
+  />
+</div>

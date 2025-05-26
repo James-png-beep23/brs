@@ -1,0 +1,125 @@
+<div class="space-y-4">
+  <div class="grid grid-cols-12 gap-y-4 sm:gap-x-4">
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg col-span-12 sm:col-span-5 lg:col-span-4 space-y-7 p-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="space-y-2">
+          <p class="text-sm font-normal text-gray-500 m-0">Task Inbox</p>
+          <p class="text-base font-semibold text-gray-800 m-0">3</p>
+        </div>
+        <div class="space-y-2">
+          <p class="text-sm font-normal text-gray-500 m-0">Completed</p>
+          <p class="text-base font-semibold text-gray-800 m-0">54768</p>
+        </div>
+        <div class="space-y-2">
+          <p class="text-sm font-normal text-gray-500 m-0">Task Inbox</p>
+          <div>
+            <img class="h-16" src="../assets/signature.png" alt="signature" />
+          </div>
+        </div>
+        <div class="space-y-2">
+          <p class="text-sm font-normal text-gray-500 m-0">OTP</p>
+          <p class="text-base font-semibold text-gray-800 m-0">
+            <%= if @staff.sms_otp || @staff.email_otp, do: "On", else: "Off" %>
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 justify-between divide-y divide-gray-300 border-b border-gray-300">
+        <div class="col-span-2 pb-3">
+          <h6 class="text-base font-semibold text-gray-800 m-0">Credentials</h6>
+        </div>
+        <div class="col-span-1 py-2.5">
+          <p class="text-sm font-normal text-gray-600 m-0">Department</p>
+        </div>
+        <div class="col-span-1 py-2.5">
+          <p class="text-sm font-normal text-gray-600 m-0 text-right">
+            <%= @staff.department || "N/A" %>
+          </p>
+        </div>
+        <div class="col-span-1 py-2.5">
+          <p class="text-sm font-normal text-gray-600 m-0">Designation</p>
+        </div>
+        <div class="col-span-1 py-2.5">
+          <p class="text-sm font-normal text-gray-600 m-0 text-right">
+            <%= @staff.designation || "N/A" %>
+          </p>
+        </div>
+        <div class="col-span-1 py-2.5">
+          <p class="text-sm font-normal text-gray-600 m-0">Office</p>
+        </div>
+        <div class="col-span-1 py-2.5">
+          <p class="text-sm font-normal text-gray-600 m-0 text-right">
+            <%= @staff.office || "N/A" %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg h-fit col-span-12 sm:col-span-7 lg:col-span-8">
+      <div class="px-4 py-4 border-b border-gray-300 mb-1">
+        <h6 class="text-base font-medium text-gray-800 m-0">Assigned Roles</h6>
+      </div>
+      <div class="p-4">
+        <form class="space-y-5">
+          <div class="w-full flex md:ml-0" action="#" method="GET">
+            <label for="search-field" class="sr-only">Search</label>
+            <div class="relative w-full text-gray-400 focus-within:text-gray-600 rounded-full bg-white">
+              <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.5 17.5L14.5834 14.5833M16.6667 9.58333C16.6667 13.4954 13.4954 16.6667 9.58333 16.6667C5.67132 16.6667 2.5 13.4954 2.5 9.58333C2.5 5.67132 5.67132 2.5 9.58333 2.5C13.4954 2.5 16.6667 5.67132 16.6667 9.58333Z"
+                    stroke="#9CA3AF"
+                    stroke-width="1.66667"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                  </path>
+                </svg>
+              </div>
+              <input
+                id="search-field"
+                phx-change="search_role"
+                phx-target={@myself}
+                phx-debounce="500"
+                value=""
+                class="block w-full border border-gray-300 rounded-lg bg-white pt-2 pl-10 pr-3 leading-5 text-gray-900 placeholder-gray-400 focus:border-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-1 focus:ring-gray-500 sm:text-base"
+                placeholder="Search Roles"
+                type="search"
+                name="search"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-row justify-start items-start flex-wrap gap-4">
+            <%= for {role, index} <- Enum.with_index(@assigned_roles) do %>
+              <div class="relative flex items-start bg-indigo-50 px-3 py-2 rounded-full">
+                <div class="flex h-6 items-center">
+                  <input
+                    id={"role-#{index}"}
+                    checked=""
+                    aria-describedby={"role-description-#{index}"}
+                    name="backend_user_role"
+                    type="checkbox"
+                    class="h-4 w-4 rounded border-gray-300 text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+
+                <div class="ml-2 text-sm leading-6">
+                  <label for="comments" class="font-medium text-gray-900"><%= role.name %></label>
+                  <span id={"role-description-#{index}"} class="text-gray-500">
+                    <span class="sr-only"><%= role.name %></span>
+                  </span>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

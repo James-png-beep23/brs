@@ -1,0 +1,85 @@
+<div>
+  <div :if={@live_action in [:index]}>
+    <div class="flex gap-2">
+      <h5 class="grow">Stages</h5>
+      <.link phx-click="new" >
+        <.button>New Stage</.button>
+      </.link>
+    </div>
+    <br>
+
+    <!-- Table Desktop -->
+    <div class="hidden w-full align-middle sm:block">
+      <div class="pb-4 shadow sm:overflow-x-auto ring-1 ring-black ring-opacity-5 sm:pb-0 rounded-lg divide-y divide-gray-200">
+        <table class="min-w-full divide-y divide-gray-300 table-auto">
+          <thead class="bg-gray-50">
+            <tr>
+              <th
+                scope="col"
+                class="py-2.5 pl-4 pr-3 text-left text-sm font-medium text-gray-600 sm:pl-4"
+              >
+                Name
+              </th>
+              <th scope="col" class="px-3 py-2.5 text-left text-sm font-medium text-gray-600">
+                Semantic Id
+              </th>
+              <th scope="col" class="px-3 py-2.5 text-sm font-medium text-gray-600 text-right">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <%= for {id, stage} <- @streams.stages do %>
+              <tr id={id}>
+                <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-4">
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">
+                      <%= stage.name %>
+                    </p>
+                  </div>
+                </td>
+                <td class="px-3 py-4 text-sm text-gray-500">
+                  <div>
+                    <p class="text-sm font-normal text-gray-500">
+                      <%= stage.semantic_id %>
+                    </p>
+                  </div>
+                </td>
+
+                <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap text-right">
+                  <div class="inline-flex justify-end items-center space-x-3 text-right">
+                    <.link
+                      phx-click="edit" phx-value-id={stage.id}
+                      class="inline-flex items-center rounded-md border border-primary-500 bg-white px-3 py-2 text-sm font-medium leading-4 text-primary-500 shadow-sm hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+                    >
+                      Edit
+                    </.link>
+                    <.link
+                      phx-click={JS.push("delete", value: %{id: stage.id}) |> hide("##{id}")}
+                      data-confirm="Are you sure?"
+                      class="items-center min-w-[70px] text-center px-3.5 py-2 border border-red-300 rounded-md shadow-sm text-sm font-medium text-gray-700
+              bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
+                    >
+                      Delete
+                    </.link>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+  </div>    
+</div>
+
+<div :if={@live_action in [:new, :edit]}>
+  <.live_component
+    module={BrsWeb.StageLive.FormComponent}
+    id={@stage.id || :new}
+    title={@page_title}
+    action={@live_action}
+    stage={@stage}
+    service_id={@service_id}
+  />
+</div>
+</div>

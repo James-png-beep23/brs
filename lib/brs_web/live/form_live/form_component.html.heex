@@ -1,0 +1,214 @@
+<div>
+  <.form id="form" for={@form} phx-target={@myself} phx-change="validate_form" phx-submit="save">
+    <div class="flex flex-row justify-between space-x-4 ">
+      <div class="w-1/4 space-y-4">
+        <.input
+          type="text"
+          field={@form[:name]}
+          label="Form Name"
+          class="w-3/6 px-4 py-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
+          placeholder="Name"
+        />
+        <.input
+          type="select"
+          label="Form Type"
+          field={@form[:type]}
+          options={[{"Application", "application"}, {"Comment Sheet", "comment_sheet"}]}
+          class="w-full px-4 py-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
+        />
+      </div>
+      <div class="flex items-start w-1/4 justify-end">
+        <.button
+          type="submit"
+          id="form_submit_button"
+          class="w-2/6 flex-5 px-0 py-0 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+        >
+          Save Form
+        </.button>
+      </div>
+    </div>
+  </.form>
+  <nav aria-label="Pages" class="flex justify-start">
+    <div class="relative z-0 flex justify-start p-3 space-x-4">
+      <%= if not is_nil(@form.data.schema) do %>
+        <%= for {form_page, form_page_index} <- Enum.with_index(@form.data.schema.pages) do %>
+          <div
+            phx-click="switch_form_page"
+            phx-target={@myself}
+            phx-value-index={form_page_index}
+            class={
+              if @current_form_page == form_page_index do
+                "cursor-pointer bg-[#EAECF5] font-bold text-primary-500 flex items-center text-primary-500 hover:text-gray-700 rounded-md group relative min-w-0 overflow-hidden py-2 px-4 text-sm text-center hover:bg-gray-50 focus:z-10 transition-colors ease-in-out duration-300"
+              else
+                "relative flex items-center min-w-0 px-4 py-2 overflow-hidden text-sm font-medium text-center transition-colors duration-300 ease-in-out rounded-lg cursor-pointer text-primary-500 hover:text-gray-700 group hover:bg-gray-50 focus:z-10"
+              end
+            }
+          >
+            <span>
+              <%= form_page.title %>
+            </span>
+            <span
+              aria-hidden="true"
+              class="hidden absolute top-0 right-0 mr-3 w-4 h-4 items-center justify-center bg-alert-600 rounded-full py-0.5 px-1.5 text-white text-xs font-bold"
+            >
+            </span>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="flex items-center p-3">
+      <span
+        class="px-2 text-blue-500 cursor-pointer"
+        phx-click="add_form_page"
+        phx-target={@myself}
+      >
+        Add
+        Page
+      </span>
+    </div>
+  </nav>
+  <%= if not is_nil(@form.data.schema) and length(@form.data.schema.pages) > 0 do %>
+    <% current_page = Enum.at(@form.data.schema.pages, @current_form_page) %>
+    <div class="grid grid-cols-12 gap-4 mb-5">
+      <div class="col-span-12 border-2 border-gray-300 border-dashed rounded-lg md:col-span-8">
+        <div class="w-full h-full p-4 bg-gray-200 rounded-lg">
+          <div class="flex flex-col items-start justify-start h-full text-center text-gray-500">
+            <%= if is_nil(current_page.fields) or length(current_page.fields) == 0 do %>
+              <p class="p-4">Form page content</p>
+            <% else %>
+              <%= for {form_field, form_field_index} <- Enum.with_index(current_page.fields) do %>
+                <div
+                  phx-click="edit_form_field"
+                  phx-target={@myself}
+                  phx-value-index={form_field_index}
+                  class="flex items-center w-full px-2 py-3 mb-1 transition duration-150 ease-linear cursor-pointer hover:border hover:border-gray-300 hover:rounded bg-gradient-to-r from-transparent to-transparent hover:from-slate-100"
+                >
+                  <div class="w-3/4">
+                    <.brs_input
+                      value={form_field.name}
+                      name={form_field.name}
+                      label={form_field.label}
+                      type={form_field.type}
+                      options={form_field.options}
+                      readonly
+                    />
+                  </div>
+                  <div class="flex justify-end w-1/4">
+                    <svg
+                      phx-click="delete_form_field"
+                      phx-target={@myself}
+                      phx-value-index={form_field_index}
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-4 h-4 text-slate-500 hover:text-slate-700 hover:cursor-pointer"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-12 md:col-span-4">
+        <div class="w-full h-full p-4 bg-gray-200 rounded-lg">
+          <div class="flex items-center justify-between">
+            <.form
+              id="form_page"
+              for={@form_page}
+              phx-target={@myself}
+              phx-change="validate_form_page"
+            >
+              <div class="flex flex-row justify-between w-full mb-2">
+                <.input
+                  type="text"
+                  field={@form_page[:title]}
+                  class="w-3/6 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
+                  placeholder="Page Title"
+                />
+              </div>
+            </.form>
+            <div phx-click="delete_form_page" phx-target={@myself} data-confirm="Are you sure?">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4 text-slate-500 hover:text-slate-700 hover:cursor-pointer"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                />
+              </svg>
+            </div>
+          </div>
+          <%= if @form_field_action==:none do %>
+            <div class="flex justify-end">
+              <span
+                class="px-2 text-blue-500 cursor-pointer"
+                phx-click="add_new_form_field"
+                phx-target={@myself}
+              >
+                Add
+                Field
+              </span>
+            </div>
+          <% end %>
+          <%= if @form_field_action != :none do %>
+            <p class="p-2 font-semibold">Properties</p>
+
+            <.form
+              for={@form_field}
+              phx-target={@myself}
+              phx-change="validate_form_field"
+              phx-submit="save_form_field"
+            >
+              <.live_component
+                module={BrsWeb.FormLive.FieldComponent}
+                id="brs-form-field"
+                form={@form}
+                main_form_field={@form_field}
+                form_field={@form_field}
+                form_field_action={@form_field_action}
+                form_field_index={@form_field_index}
+                current_form_page={@current_form_page}
+              />
+
+              <div class="flex items-center justify-center w-full">
+                <span
+                  class="px-2 text-gray-700 cursor-pointer"
+                  phx-click="cancel_form_field_edit"
+                  phx-target={@myself}
+                >
+                  Cancel
+                </span>
+                <button
+                  type="submit"
+                  id="schema_field_submit_button"
+                  class="px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+                >
+                  <%= if @form_field_action == :new do %>
+                    Add
+                  <% else %>
+                    Edit
+                  <% end %>
+                </button>
+              </div>
+            </.form>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

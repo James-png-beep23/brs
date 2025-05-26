@@ -1,0 +1,216 @@
+<div class="px-4 sm:px-5 lg:px-6 space-y-6 md:space-y-6">
+  <div class="mt-0 px-0 border-b border-gray-300 pb-3 mb-4">
+    <div class="sm:flex justify-between items-center space-y-3 sm:space-y-0 sm:space-x-4">
+      <div>
+        <p class="text-lg sm:text-xl lg:text-2xl font-semibold leading-none text-primary-500 mb-1">
+          Services
+        </p>
+        <p class="text-sm mt-0 text-gray-500">View all system services.</p>
+      </div>
+      <div>
+        <.link patch={~p"/system/services/new"}
+        class="inline-flex items-center rounded-md border border-primary-500 bg-primary-500 px-3 py-2 text-sm font-medium leading-4 text-white
+        shadow-sm hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+        >
+        Add New Service
+      </.link>
+    </div>
+  </div>
+</div>
+
+<div class="space-y-4 md:space-y-4">
+  <div>
+    <form class="w-full flex md:ml-0" action="#" method="GET">
+      <label for="search-field" class="sr-only">Search</label>
+      <div class="relative w-full text-gray-400 focus-within:text-gray-600 rounded-full bg-white">
+        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+          <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+                d="M17.5 17.5L14.5834 14.5833M16.6667 9.58333C16.6667 13.4954 13.4954 16.6667 9.58333 16.6667C5.67132 16.6667 2.5 13.4954 2.5 9.58333C2.5 5.67132 5.67132 2.5 9.58333 2.5C13.4954 2.5 16.6667 5.67132 16.6667 9.58333Z"
+                stroke="#9CA3AF"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+            </path>
+          </svg>
+        </div>
+        <input
+            id="search-field"
+            value=""
+            class="block w-full rounded-full border border-gray-300 bg-white py-2 pl-10 pr-3 leading-5 text-gray-900 placeholder-gray-400 focus:border-white focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-500 sm:text-sm"
+            placeholder="Search by name, reg no"
+            type="search"
+            name="search"
+        />
+      </div>
+    </form>
+  </div>
+  <div>
+    <!-- table content -->
+    <div class="flex flex-col mb-4">
+      <div class="sm:overflow-auto lg:overflow-visible">
+        <!-- Table Desktop -->
+        <div class="hidden w-full align-middle sm:block">
+          <div class="pb-4 shadow sm:overflow-x-auto ring-1 ring-black ring-opacity-5 sm:pb-0 rounded-lg divide-y divide-gray-200">
+            <table class="min-w-full divide-y divide-gray-300 table-auto">
+              <thead class="bg-gray-50">
+              <tr>
+                <th
+                    scope="col"
+                    class="py-2.5 pl-4 pr-3 text-left text-sm font-medium text-gray-600 sm:pl-6"
+                >
+                  Name
+                </th>
+                <th
+                    scope="col"
+                    class="px-3 py-2.5 text-left text-sm font-medium text-gray-600"
+                >
+                  Form
+                </th>
+                <th
+                    scope="col"
+                    class="px-3 py-2.5 text-left text-sm font-medium text-gray-600"
+                >
+                  Created On
+                </th>
+                <th
+                    scope="col"
+                    class="px-3 py-2.5 text-left text-sm font-medium text-gray-600"
+                >
+                  Registry
+                </th>
+                <th
+                    scope="col"
+                    class="px-3 py-2.5 text-left text-sm font-medium text-gray-600 text-right"
+                >
+                  Action
+                </th>
+              </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+              <%= for {id, service} <- @streams.services do %>
+              <tr id={"service-#{id}"}>
+                <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6">
+                  <%= service.name %>
+                </td>
+                <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6">
+                  <%= service.form.name %>
+                </td>
+                <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6">
+                  <%= date_format(service.inserted_at) %>
+                </td>
+                <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6">
+                  <%= service.registry.name %>
+                </td>
+                <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap text-right">
+                  <a href={~p"/system/services/#{service.id}/workflow"}
+                     class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Workflow</a>
+                  <.link class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" navigate={~p"/system/services/#{service.id}"}>
+                  Show
+                </.link>
+                </td>
+              </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Mobile table -->
+        <div class="divide-y divide-gray-300">
+          <%= for {id, service} <- @streams.services do %>
+          <div class="block sm:hidden mx-auto w-full bg-white p-3">
+            <button
+                phx-click={
+                JS.toggle_class("hidden", to: "#mobile-service-#{id}")
+            |> JS.toggle_class("rotate-180", to: "#mobile-service-icon-#{id}")
+            }
+            type="button"
+            aria-expanded="true"
+            class="flex items-center w-full justify-between rounded-lg text-left focus:outline-none focus-visible:ring focus-visible:ring-primary-600
+            focus-visible:ring-opacity-75"
+            aria-controls={"mobile-service-#{id}"}
+            >
+            <div>
+              <p class="text-base font-medium text-gray-900">Name</p>
+              <p class="text-sm font-medium text-gray-700"><%= service.name %></p>
+            </div>
+            <span class="inline-block p-0.5 border rounded-md border-gray-400">
+              <svg
+                  id={"mobile-service-icon-#{id}"}
+                  class="rotate-0 transform"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                  class="h-5 w-5 text-gray-500"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7">
+                </path>
+              </svg>
+            </span>
+            </button>
+            <div id={"mobile-service-#{id}"} class="hidden">
+              <div class="border-t mt-4 pt-4 grid grid-cols-2 gap-4">
+                <div class="col-span-1">
+                  <p class="text-xs text-gray-600">Name</p>
+                  <p class="text-sm font-medium"><%= service.name %></p>
+                </div>
+                <div class="col-span-1">
+                  <p class="text-xs text-gray-600">Date Created</p>
+                  <p class="text-sm font-medium"><%= date_format(service.inserted_at) %></p>
+                </div>
+                <div class="col-span-1">
+                  <p class="text-xs text-gray-600">Registry</p>
+                  <p class="text-sm font-medium"><%= service.registry.name %></p>
+                </div>
+                <div class="col-span-1">
+                  <p class="text-xs text-gray-600">Workflow</p>
+                  <p class="text-sm font-medium">
+                    <a href={~p"/system/services/#{service.id}/workflow"}>Test Workflow</a>
+                  </p>
+                </div>
+              </div>
+              <div class="mt-3 flex justify-end sm:mt-0 sm:ml-4 border-t pt-4 space-x-3">
+                <.link
+                class="items-center min-w-[70px] text-center px-3.5 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700
+                bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
+                navigate={~p"/system/services/#{service.id}"}
+                >
+                View
+              </.link>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<.modal
+:if={@live_action in [:new]}
+id="service-modal"
+show
+on_cancel={JS.navigate(~p"/system/services")}
+>
+<.live_component
+module={BrsWeb.ServiceLive.FormComponent}
+id={@service.id || :new}
+title="New Service"
+action={@live_action}
+service={@service}
+form_event="save"
+patch={~p"/system/services"}
+/>
+</.modal>
+</div>
+</div>

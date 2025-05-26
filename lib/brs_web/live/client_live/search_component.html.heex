@@ -1,0 +1,65 @@
+<div>
+  <.form
+    id="client-search-form"
+    for={@client_search_form}
+    phx-target={@myself}
+    phx-change="validate_client_search_form"
+    phx-submit="submit_client_search"
+    class="flex items-center justify-between mb-5 overflow-hidden bg-white border border-gray-300 rounded-full"
+  >
+    <div class="py-3">
+      <select
+        name={input_name(@client_search_form, :id_type)}
+        class="block w-full py-0 pl-4 pr-10 mt-0 font-normal text-gray-700 border-t-0 border-b-0 border-l border-r-0 border-gray-300 ring-0 ring-inset ring-gray-300 focus:ring-0 sm:text-base sm:leading-5"
+      >
+        <option value="citizen" selected={input_value(@client_search_form, :id_type) == "citizen"}>
+          Citizen
+        </option>
+        <option value="alien" selected={input_value(@client_search_form, :id_type) == "alien"}>
+          Alien
+        </option>
+        <option value="visitor" selected={input_value(@client_search_form, :id_type) == "visitor"}>
+          Visitor
+        </option>
+        <option
+          value="business"
+          selected={input_value(@client_search_form, :id_type) == "business"}
+        >
+          Business
+        </option>
+      </select>
+    </div>
+    <div class="flex-1">
+      <div class="flex w-full md:ml-0">
+        <label for="search-field" class="sr-only">Search</label>
+        <div class="relative w-full text-gray-400 bg-white rounded-full focus-within:text-gray-600">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.5 17.5L14.5834 14.5833M16.6667 9.58333C16.6667 13.4954 13.4954 16.6667 9.58333 16.6667C5.67132 16.6667 2.5 13.4954 2.5 9.58333C2.5 5.67132 5.67132 2.5 9.58333 2.5C13.4954 2.5 16.6667 5.67132 16.6667 9.58333Z"
+                stroke="#9CA3AF"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+              </path>
+            </svg>
+          </div>
+          <input
+            phx-debounce="blur"
+            name={input_name(@client_search_form, :q)}
+            value={input_value(@client_search_form, :q)}
+            class="block w-full py-3 pl-10 pr-3 leading-5 text-gray-900 placeholder-gray-400 border-0 focus:border-white focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-gray-500 sm:text-base sm:leading-5"
+            placeholder={@placeholder_text}
+          />
+        </div>
+      </div>
+    </div>
+  </.form>
+</div>

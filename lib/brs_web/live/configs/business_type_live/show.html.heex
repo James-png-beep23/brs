@@ -1,0 +1,58 @@
+<main style="min-height: calc(100vh - 64px)" class="py-5 sm:py-6 bg-backdrop">
+  <div class="px-4 space-y-6 sm:px-5 lg:px-6 md:space-y-6">
+    <div class="space-y-4">
+      <!-- breadcrumbs -->
+      <nav>
+        <ol role="list" class="flex items-center space-x-3">
+          <li>
+            <div class="flex items-center">
+              <a
+                href={~p"/system/business-types"}
+                class="text-sm font-semibold text-primary-500 hover:text-gray-700"
+              >
+                Business Types
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg
+                class="flex-shrink-0 w-5 h-5 text-gray-400"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                  clip-rule="evenodd"
+                >
+                </path>
+              </svg>
+              <span class="ml-3 text-sm font-medium text-gray-500 hover:text-gray-700">
+                <%= @business_type.name %>
+              </span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+      <!-- breadcrumbs -->
+      <div class="pb-3 mb-4 border-b md:flex md:items-end md:justify-between">
+        <div class="flex-1 min-w-0">
+          <h3 class="text-lg font-semibold sm:text-lg lg:text-xl text-primary-500">
+            Edit Business Type
+          </h3>
+        </div>
+      </div>
+    </div>
+    <.live_component
+      module={BrsWeb.Configs.BusinessTypeLive.FormComponent}
+      id={@business_type.id}
+      title={@page_title}
+      action={@live_action}
+      business_type={@business_type}
+      owner_types={@owner_types}
+      patch={~p"/system/business-types/#{@business_type.id}/edit"}
+    />
+  </div>
+</main>

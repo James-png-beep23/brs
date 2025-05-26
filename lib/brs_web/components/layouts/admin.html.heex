@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BRS ADMIN</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <link phx-track-static rel="stylesheet" href={~p"/assets/output.css"} />
+  </head>
+
+  <body class="h-full">
+    <!-- Sidebar -->
+    <BrsWeb.AdminSidebar.sidebar_menu
+      registry_menu={BrsWeb.Menus.registry_menu(%{})}
+      menu_items={BrsWeb.Menus.side_menu(@current_uri)}
+      logo={~p"/images/brs_logo.svg"}
+      current_path={@current_uri.path}
+      current_registry={@current_registry}
+      current_backend_user={@current_backend_user}
+    />
+    <!-- /Sidebar -->
+
+    <!-- Main Section -->
+    <div class="lg:pl-72">
+      <.admin_header menu_items={BrsWeb.Menus.profile_menu()} current_user={@current_user} />
+
+      <main style="min-height: calc(100vh - 64px)" class="py-5 sm:py-6 bg-backdrop">
+        <.flash_group flash={@flash} />
+        <%= @inner_content %>
+      </main>
+    </div>
+    <!-- Main Section -->
+  </body>
+</html>

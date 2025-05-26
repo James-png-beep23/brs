@@ -1,0 +1,42 @@
+<div class="flex-1 pb-6 border-b border-gray-300">
+  <.form
+    class="flex w-full md:ml-0"
+    id="search-form"
+    for={@application_search_form}
+    phx-target={@myself}
+    phx-change="validate_application_search_form"
+    phx-submit="submit_application_search"
+  >
+    <label for="search-field" class="sr-only">Search</label>
+    <div class="relative w-full text-gray-400 bg-white rounded-full focus-within:text-gray-600">
+      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.5 17.5L14.5834 14.5833M16.6667 9.58333C16.6667 13.4954 13.4954 16.6667 9.58333 16.6667C5.67132 16.6667 2.5 13.4954 2.5 9.58333C2.5 5.67132 5.67132 2.5 9.58333 2.5C13.4954 2.5 16.6667 5.67132 16.6667 9.58333Z"
+            stroke="#9CA3AF"
+            stroke-width="1.66667"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+          </path>
+        </svg>
+      </div>
+
+      <input
+        id="search-field"
+        type="text"
+        phx-debounce="blur"
+        name={input_name(@application_search_form, :q)}
+        value={input_value(@application_search_form, :q)}
+        class="block w-full py-3 pl-10 pr-3 leading-5 text-gray-900 placeholder-gray-400 border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-gray-500 sm:text-base sm:leading-5"
+        placeholder={@placeholder_text || "Search"}
+      />
+    </div>
+  </.form>
+</div>

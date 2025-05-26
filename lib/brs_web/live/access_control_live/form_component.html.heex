@@ -1,0 +1,124 @@
+<div>
+  <div class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <!-- Background backdrop, show/hide based on modal state. -->
+    <div class="fixed inset-0 transition-opacity bg-gray-700 bg-opacity-75 backdrop-filter backdrop-blur-sm">
+    </div>
+
+    <div class="fixed inset-0 z-50 overflow-y-auto">
+      <div class="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
+        <!-- Modal panel, show/hide based on modal state.  -->
+        <div class="relative px-4 pt-5 pb-4 text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-xl sm:p-6">
+          <div class="flex items-start justify-between space-x-3">
+            <h1 class="m-0 mb-4 text-lg font-semibold text-gray-700">
+              <%= if @type == "roles", do: "Edit Role", else: "Edit Permission" %>
+            </h1>
+
+            <button phx-click={if @action == :edit, do: "toggle_edit_modal", else: "toggle_modal"}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+              >
+                <path
+                  d="M13 1L1 13M1 1L13 13"
+                  stroke="#667085"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <.form
+            id="edit-form"
+            for={@edit_form}
+            phx-target={@myself}
+            phx-change="validate"
+            phx-submit="save"
+            class="space-y-4"
+          >
+            <div class="relative flex flex-col items-start">
+              <div class="w-full">
+                <label class="block text-sm font-medium leading-6 text-slate-600">
+                  Name
+                </label>
+                <div class="mt-2">
+                  <.input
+                    field={@edit_form[:name]}
+                    type="text"
+                    placeholder="Name"
+                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <%= if @type == "permissions" do %>
+                <div class="w-full">
+                  <label class="block text-sm font-medium leading-6 text-slate-600">
+                    Description
+                  </label>
+                  <div class="mt-2">
+                    <.input
+                      field={@edit_form[:description]}
+                      type="textarea"
+                      placeholder="Description"
+                      class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+              <% end %>
+              <%= if @type == "roles" do %>
+                <div class="w-full my-2">
+                  <p class="text-lg">Permissions</p>
+                </div>
+
+                <div phx-feedback-for="role[role_permissions]" class="mt-2">
+                  <%= for {permission, index} <- Enum.with_index(@current_registry_permissions) do %>
+                    <div class="relative flex gap-x-3">
+                      <div class="flex items-center h-6">
+                        <input
+                          id={"permission-#{index}"}
+                          name={input_name(@edit_form, :role_permissions) <> "[]"}
+                          type="checkbox"
+                          value={permission.key}
+                          class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-600"
+                          checked={permission_checked?(permission.key, @edit_form)}
+                        />
+                      </div>
+                      <div class="text-sm leading-6">
+                        <label
+                          for={"permission-#{index}"}
+                          class="text-base font-semibold text-gray-900"
+                        >
+                          <%= permission.name %>
+                        </label>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="flex justify-end pt-4 space-x-3 border-t border-gray-300">
+              <button
+                type="button"
+                phx-click="toggle_edit_modal"
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:w-auto"
+              >
+                Cancel
+              </button>
+              <.button
+                type="submit"
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-white border rounded-md shadow-sm border-primary-500 bg-primary-500 hover:text-primary-500 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:w-auto"
+              >
+                Save
+              </.button>
+            </div>
+          </.form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

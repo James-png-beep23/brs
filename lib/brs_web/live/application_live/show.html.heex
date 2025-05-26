@@ -1,0 +1,126 @@
+<div class="sm:pt-0 lg:col-span-5 xl:col-span-9">
+  <div id="vue-root" class="mt-4">
+    <div>
+      <div class="md:flex md:items-end md:justify-between mb-4 pb-2 border-b">
+        <div class="min-w-0 flex-1">
+          <h3 class="text-lg sm:text-2xl leading-6 font-medium text-primary-500">
+            <%= @current_service.name %> | <%= @application.application_number %>
+          </h3>
+
+          <p class="mt-1 text-sm text-gray-500">
+            Submitted:
+            <span class="text-primary-500 mr-2">
+              <%= date_format_sht(@application.submitted_at) %>
+            </span>
+          </p>
+
+          <p class="mt-1 text-sm text-gray-500">
+            Applicant:
+            <span class="text-primary-500 mr-2">
+              <%= full_name(@application.submitted_by) %>
+            </span>
+            |
+            Stage:
+            <span class="text-primary-500 mr-2">
+              Draft
+            </span>
+          </p>
+        </div>
+
+        <div class="mt-4 flex md:ml-4 md:mt-0 sm:space-x-3">
+          <a
+            href={~p"/applications/#{@application.id}"}
+            class="whitespace-nowrap w-full inline-flex items-center justify-center rounded-md border border-primary-910 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+          >
+            Transfer
+          </a>
+          <a
+            href={~p"/applications/#{@application.id}/edit"}
+            class="whitespace-nowrap w-full inline-flex items-center justify-center rounded-md border border-primary-910 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+          >
+            Edit
+          </a>
+          <a
+            data-confirm="Your are about to delete this application! "
+            data-method="post"
+            data-to="/applications/#{@application.id}/delete"
+            href="/applications/#{@application.id}/delete"
+            rel="nofollow"
+            class="whitespace-nowrap w-full inline-flex items-center justify-center rounded-md border border-transparent bg-red-600 px-3 py-2 text-sm font-medium leading-4 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+          >
+            Delete
+          </a>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between mb-2">
+        <div class="text-muted"></div>
+
+        <div data-v-e4bd5b1c="" class="mb-3">
+          <div data-v-e4bd5b1c="" class="d-flex justify-content-start flex-wrap"></div>
+
+          <form data-v-e4bd5b1c="" method="post">
+            <input
+              data-v-e4bd5b1c=""
+              type="hidden"
+              name="_csrf_token"
+              value="KSdTcAQpCTtaEDokAiMXG2BIXVs_PRl5pId7ipNW8rorSiZi-p63mZLH"
+            />
+          </form>
+        </div>
+      </div>
+
+      <div id="form-data">
+        <div class="my-8">
+          <div class="md:flex md:items-end md:justify-between mb-4 pb-2 border-b">
+            <h3 class="text-lg sm:text-2xl leading-6 font-medium text-primary-500">
+              Application Details
+            </h3>
+          </div>
+
+          <div
+            class="min-w-0 bg-white p-4 rounded-b-md rounded-t-md border border-primary-910 mb-3"
+            style="font-family: inherit;"
+          >
+            <div class="px-4 sm:px-0">
+              <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+                <ul class="flex flex-wrap -mb-px">
+                  <%= for {page, index} <- Enum.with_index(@application.form.schema.pages) do %>
+                    <li class="me-2">
+                      <a
+                        href="#"
+                        phx-click="switch_tab"
+                        phx-value-index={index}
+                        class={"inline-block p-4 #{if @current_tab == index, do: "text-blue-600 border-blue-600", else: "border-transparent"} border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"}
+                      >
+                        <%= page.title %>
+                      </a>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+
+              <div class="mt-6 border-t border-gray-100">
+                <dl class="divide-y divide-gray-100">
+                  <%= with page when not is_nil(page) <- Enum.at(@application.form.schema.pages, @current_tab),
+          fields when is_list(fields) <- page.fields do %>
+                    <%= for field <- fields do %>
+                      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                        <dt class="text-sm font-medium leading-6 text-gray-900">
+                          <%= field.label %>
+                        </dt>
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                          <%= @application.form_data[field.name] %>
+                        </dd>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

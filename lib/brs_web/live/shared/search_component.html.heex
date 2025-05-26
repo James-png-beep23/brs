@@ -1,0 +1,58 @@
+<div>
+  <div class="flex justify-between items-center rounded-full border border-gray-300 bg-white overflow-hidden mb-5">
+    <div class="flex-1">
+      <.form
+        class="w-full flex md:ml-0"
+        for={@form}
+        phx-target={@myself}
+        phx-change="validate_form"
+        phx-submit="perform_search"
+      >
+        <label for="search-field" class="sr-only">Search</label>
+        <div :if={assigns[:filters]} class="ml-4 py-3 flex-shrink-0">
+          <select
+            id="filter_by"
+            phx-change="change_prompt"
+            name={input_name(@form, :filter_by)}
+            class="mt-0 block w-full border-l-0 border-r border-t-0 border-b-0 border-gray-300 ring-0 ring-inset ring-gray-300 focus:ring-0 py-0 pl-4 pr-10 text-gray-700 sm:text-base font-normal sm:leading-5"
+          >
+            <%= for {key, name} <- @filters do %>
+              <option value={key} selected={input_value(@form, :filter_by) == to_string(key)}>
+                <%= name %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+        <div class="relative w-full text-gray-400 focus-within:text-gray-600 rounded-full bg-white">
+          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.5 17.5L14.5834 14.5833M16.6667 9.58333C16.6667 13.4954 13.4954 16.6667 9.58333 16.6667C5.67132 16.6667 2.5 13.4954 2.5 9.58333C2.5 5.67132 5.67132 2.5 9.58333 2.5C13.4954 2.5 16.6667 5.67132 16.6667 9.58333Z"
+                stroke="#9CA3AF"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+              </path>
+            </svg>
+          </div>
+          <input
+            id="search-field"
+            phx-debounce="blur"
+            name={input_name(@form, assigns[:search_field] || :q)}
+            value={input_value(@form, assigns[:search_field] || :q)}
+            class="block w-full border-0 py-3 pl-10 pr-3 leading-5 text-gray-900 placeholder-gray-400 focus:border-white focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-gray-500 sm:text-base sm:leading-5"
+            placeholder={@prompt || "Search"}
+            type="search"
+          />
+        </div>
+      </.form>
+    </div>
+  </div>
+</div>

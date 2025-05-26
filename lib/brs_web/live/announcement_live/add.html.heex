@@ -1,0 +1,465 @@
+<div class="px-4 space-y-4 sm:px-5 lg:px-6 md:space-y-4">
+  <div class="space-y-4">
+    <!-- breadcrumbs -->
+    <nav>
+      <ol role="list" class="flex items-center space-x-3">
+        <li>
+          <div class="flex items-center">
+            <.link
+              href={~p"/admin/announcements"}
+              class="text-sm font-medium text-gray-500 hover:text-gray-700"
+            >
+              Announcements
+            </.link>
+          </div>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-gray-400"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                clip-rule="evenodd"
+              >
+              </path>
+            </svg>
+            <span class="ml-3 text-sm font-semibold text-primary-500 hover:text-gray-700">
+              Create Announcement
+            </span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+    <!-- breadcrumbs -->
+    <div class="pb-3 mb-4 border-b md:flex md:items-end md:justify-between">
+      <div class="flex-1 min-w-0">
+        <h3 class="mb-1 text-lg font-semibold leading-none sm:text-xl lg:text-2xl text-primary-500">
+          Create Announcement
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="space-y-4 md:space-y-5">
+    <div class="max-w-[700px] w-full mx-auto space-y-4 md:space-y-5 mt-4">
+      <div>
+        <label for="title" class="mb-2 text-sm font-medium text-primary-500">Title</label>
+        <input
+          id="title"
+          value=""
+          class="block w-full p-2 leading-5 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-gray-500 sm:text-sm sm:leading-5"
+          placeholder="Title"
+          type="text"
+          name="title"
+        />
+      </div>
+      <div class="mb-5">
+        <label for="title" class="mb-2 text-sm font-medium text-primary-500">Message</label>
+        <div>
+          <!-- action section -->
+          <div class="flex-wrap px-3 py-2 rounded-t-lg bg-slate-200 ring-1 ring-inset ring-gray-300">
+            <div class="flex flex-wrap items-center space-x-2">
+              <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                <!-- attachment /link -->
+                <svg
+                  width="11"
+                  height="22"
+                  viewBox="0 0 11 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.12435 5.50033V16.042C9.12435 18.0678 7.48352 19.7087 5.45768 19.7087C3.43185 19.7087 1.79102 18.0678 1.79102 16.042V4.58366C1.79102 3.31866 2.81768 2.29199 4.08268 2.29199C5.34768 2.29199 6.37435 3.31866 6.37435 4.58366V14.2087C6.37435 14.7128 5.96185 15.1253 5.45768 15.1253C4.95352 15.1253 4.54102 14.7128 4.54102 14.2087V5.50033H3.16602V14.2087C3.16602 15.4737 4.19268 16.5003 5.45768 16.5003C6.72268 16.5003 7.74935 15.4737 7.74935 14.2087V4.58366C7.74935 2.55783 6.10852 0.916992 4.08268 0.916992C2.05685 0.916992 0.416016 2.55783 0.416016 4.58366V16.042C0.416016 18.8287 2.67102 21.0837 5.45768 21.0837C8.24435 21.0837 10.4993 18.8287 10.4993 16.042V5.50033H9.12435Z"
+                    fill="black"
+                    fill-opacity="0.45"
+                  />
+                </svg>
+              </button>
+              <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                <svg
+                  width="14"
+                  height="15"
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2.8267 15H0.497159L5.73153 0.454545H8.26705L13.5014 15H11.1719L7.05966 3.09659H6.94602L2.8267 15ZM3.21733 9.30398H10.7741V11.1506H3.21733V9.30398Z"
+                    fill="black"
+                    fill-opacity="0.44"
+                  />
+                </svg>
+              </button>
+              <div class="sm:pr-7">
+                <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.25 18.4167V5.58333C20.25 4.575 19.425 3.75 18.4167 3.75H5.58333C4.575 3.75 3.75 4.575 3.75 5.58333V18.4167C3.75 19.425 4.575 20.25 5.58333 20.25H18.4167C19.425 20.25 20.25 19.425 20.25 18.4167ZM8.79167 13.375L11.0833 16.1342L14.2917 12L18.4167 17.5H5.58333L8.79167 13.375Z"
+                      fill="black"
+                      fill-opacity="0.45"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                <svg
+                  width="12"
+                  height="16"
+                  viewBox="0 0 12 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 15.273V0.727539H5.82386C6.89394 0.727539 7.78646 0.886157 8.50142 1.20339C9.21638 1.52063 9.75379 1.96097 10.1136 2.52441C10.4735 3.08313 10.6534 3.72707 10.6534 4.45623C10.6534 5.02441 10.5398 5.52394 10.3125 5.95481C10.0852 6.38095 9.77273 6.73133 9.375 7.00595C8.98201 7.27584 8.5322 7.4676 8.02557 7.58123V7.72328C8.57955 7.74695 9.09801 7.9032 9.58097 8.19203C10.0687 8.48085 10.464 8.88568 10.767 9.40652C11.0701 9.92262 11.2216 10.5381 11.2216 11.2531C11.2216 12.0249 11.0298 12.7138 10.6463 13.3199C10.2675 13.9212 9.70644 14.397 8.96307 14.7474C8.2197 15.0978 7.3035 15.273 6.21449 15.273H0ZM3.07528 12.7588H5.58239C6.43939 12.7588 7.06439 12.5954 7.45739 12.2687C7.85038 11.9373 8.04688 11.497 8.04688 10.9477C8.04688 10.5452 7.94981 10.1901 7.75568 9.88237C7.56155 9.5746 7.28456 9.33313 6.92472 9.15794C6.5696 8.98275 6.14583 8.89515 5.65341 8.89515H3.07528V12.7588ZM3.07528 6.81419H5.35511C5.77652 6.81419 6.15057 6.7408 6.47727 6.59402C6.80871 6.4425 7.06913 6.22943 7.25852 5.95481C7.45265 5.68019 7.54972 5.35112 7.54972 4.9676C7.54972 4.44203 7.36269 4.01826 6.98864 3.69629C6.61932 3.37432 6.09375 3.21333 5.41193 3.21333H3.07528V6.81419Z"
+                    fill="black"
+                    fill-opacity="0.29"
+                  />
+                </svg>
+              </button>
+              <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                <svg
+                  width="5"
+                  height="16"
+                  viewBox="0 0 5 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.39684 0.727539L1.98207 15.273H0.220703L2.63548 0.727539H4.39684Z"
+                    fill="black"
+                    fill-opacity="0.29"
+                  />
+                </svg>
+              </button>
+              <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                <svg
+                  width="13"
+                  height="18"
+                  viewBox="0 0 13 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.73651 7.25994V0.875H10.8672V11.7841H8.77912V9.89489H8.66548C8.41454 10.4773 8.01207 10.9626 7.4581 11.3509C6.90885 11.7344 6.22467 11.9261 5.40554 11.9261C4.70478 11.9261 4.08452 11.7723 3.54474 11.4645C3.00971 11.152 2.5883 10.6903 2.28054 10.0795C1.97751 9.46875 1.82599 8.71354 1.82599 7.81392V0.875H3.94957V7.55824C3.94957 8.30161 4.15554 8.89347 4.56747 9.33381C4.9794 9.77415 5.51444 9.99432 6.17259 9.99432C6.57031 9.99432 6.96567 9.89489 7.35866 9.69602C7.75639 9.49716 8.08546 9.1965 8.34588 8.79403C8.61103 8.39157 8.74124 7.88021 8.73651 7.25994Z"
+                    fill="black"
+                    fill-opacity="0.29"
+                  />
+                  <path
+                    d="M0.398438 15.7614H12.2876V17.125H0.398438V15.7614Z"
+                    fill="black"
+                    fill-opacity="0.29"
+                  />
+                </svg>
+              </button>
+              <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.28808 1.0625C9.28808 0.880164 9.36051 0.705295 9.48944 0.576364C9.61837 0.447433 9.79324 0.375 9.97558 0.375C10.1579 0.375 10.3328 0.447433 10.4617 0.576364C10.5906 0.705295 10.6631 0.880164 10.6631 1.0625V2.21475C11.0096 2.30275 11.3368 2.48288 11.6077 2.75375L18.4497 9.59575C18.8308 9.97635 19.0478 10.4909 19.0545 11.0295C19.0612 11.568 18.857 12.0878 18.4855 12.4777L13.5079 17.7028C13.3183 17.9021 13.0907 18.0614 12.8386 18.1714C12.5864 18.2814 12.3148 18.3399 12.0397 18.3433C11.7646 18.3468 11.4916 18.2952 11.2368 18.1916C10.9819 18.0879 10.7504 17.9343 10.5558 17.7399L3.58733 10.7714C3.39567 10.5798 3.24362 10.3524 3.13989 10.1021C3.03616 9.85177 2.98277 9.58346 2.98277 9.3125C2.98277 9.04154 3.03616 8.77323 3.13989 8.52291C3.24362 8.27259 3.39567 8.04516 3.58733 7.85363L8.69133 2.75375C8.86431 2.58172 9.06633 2.4416 9.28808 2.33987V1.0625ZM4.7602 10H16.9097L10.6631 3.75338V5.1875C10.6631 5.36984 10.5906 5.5447 10.4617 5.67364C10.3328 5.80257 10.1579 5.875 9.97558 5.875C9.79324 5.875 9.61837 5.80257 9.48944 5.67364C9.36051 5.5447 9.28808 5.36984 9.28808 5.1875V4.10125L4.55945 8.82712C4.43056 8.95605 4.35816 9.13089 4.35816 9.31319C4.35816 9.49549 4.43056 9.67033 4.55945 9.79925L4.7602 10ZM2.5217 13.0553C2.59397 12.9729 2.68299 12.9068 2.78282 12.8616C2.88265 12.8164 2.99098 12.793 3.10058 12.793C3.21017 12.793 3.3185 12.8164 3.41833 12.8616C3.51816 12.9068 3.60718 12.9729 3.67945 13.0553L5.2607 14.8634C6.88733 16.7196 5.5687 19.625 3.10058 19.625C0.632452 19.625 -0.684799 16.7196 0.939077 14.8634L2.52033 13.0553H2.5217Z"
+                    fill="#1B1C1D"
+                    fill-opacity="0.42"
+                  />
+                </svg>
+              </button>
+              <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.78711 7H16.7871M7.78511 11H13.7821M5.78711 15H15.7821"
+                    stroke="#1B1C1D"
+                    stroke-opacity="0.38"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.78711 6H17.7651M3.78711 8H17.7651M3.78711 10H17.7651M3.78711 12H17.7651M3.78711 14H17.7651M3.78711 16H10.7871"
+                    stroke="#1B1C1D"
+                    stroke-opacity="0.38"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.78716 7H16.7872M4.78516 11H10.7822M4.78716 15H14.7822"
+                    stroke="#1B1C1D"
+                    stroke-opacity="0.38"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.78711 7H16.7871M10.7851 11H16.7821M6.78711 15H16.7821"
+                    stroke="#1B1C1D"
+                    stroke-opacity="0.38"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button class="p-2 transition-all rounded-lg hover:bg-gray-100">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.78711 8H17.7651M3.78711 10H17.7651M3.78711 12H17.7651M3.78711 6H10.7871M3.78711 14H17.7651M3.78711 16H17.7651"
+                    stroke="#1B1C1D"
+                    stroke-opacity="0.38"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <textarea
+            rows="4"
+            name="comment"
+            id="comment"
+            class="block w-full px-3 py-5 text-gray-900 border-0 rounded-b-lg shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6"
+          ></textarea>
+        </div>
+      </div>
+      <div class="mb-5">
+        <h4 class="text-primary-500 text-sm font-medium mb-1.5">Show Alert</h4>
+        <div class="flex items-center space-x-2.5 mb-3" x-data="{toggleOn: false}">
+          <button
+            id="for_frontend"
+            type="button"
+            class="relative inline-flex flex-shrink-0 h-6 transition-colors duration-200 ease-in-out bg-gray-300 border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+            role="switch"
+            aria-checked="false"
+            x-on:click="toggleOn = !toggleOn"
+            x-bind:class="{'bg-primary-600': toggleOn, 'bg-gray-300': !toggleOn}"
+          >
+            <span class="sr-only">Use setting</span>
+            <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+            <span
+              aria-hidden="true"
+              class="inline-block w-5 h-5 transition duration-200 ease-in-out bg-white rounded-full shadow pointer-events-none ring-0"
+              x-bind:class="{'translate-x-0': !toggleOn, 'translate-x-[100%]': toggleOn}"
+            >
+            </span>
+          </button>
+          <label for="for_frontend" class="text-sm font-medium text-primary-500">
+            Show on Front end
+          </label>
+        </div>
+        <div class="flex items-center space-x-2.5" x-data="{toggleOn: false}">
+          <button
+            id="for_backend"
+            type="button"
+            class="relative inline-flex flex-shrink-0 h-6 transition-colors duration-200 ease-in-out bg-gray-300 border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+            role="switch"
+            aria-checked="false"
+            x-on:click="toggleOn = !toggleOn"
+            x-bind:class="{'bg-primary-600': toggleOn, 'bg-gray-300': !toggleOn}"
+          >
+            <span class="sr-only">Use setting</span>
+            <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+            <span
+              aria-hidden="true"
+              class="inline-block w-5 h-5 transition duration-200 ease-in-out bg-white rounded-full shadow pointer-events-none ring-0"
+              x-bind:class="{'translate-x-0': !toggleOn, 'translate-x-[100%]': toggleOn}"
+            >
+            </span>
+          </button>
+          <label for="for_backend" class="text-sm font-medium text-primary-500">
+            Show on Back end
+          </label>
+        </div>
+      </div>
+      <!-- alert type -->
+      <div class="mb-5">
+        <div class="mb-5">
+          <fieldset>
+            <legend class="text-sm font-semibold leading-6 text-primary-500">Alert Type</legend>
+
+            <div class="mt-1.5 space-y-6 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
+              <div class="flex items-center">
+                <input
+                  id="none"
+                  name="alert-type"
+                  type="radio"
+                  class="w-4 h-4 border-gray-300 text-primary-600 focus:ring-primary-600"
+                />
+                <label for="none" class="block ml-3 text-sm font-medium leading-6 text-gray-900">
+                  None
+                </label>
+              </div>
+              <div class="flex items-center">
+                <input
+                  id="danger"
+                  name="alert-type"
+                  type="radio"
+                  class="w-4 h-4 border-gray-300 text-primary-600 focus:ring-primary-600"
+                />
+                <label for="danger" class="block ml-3 text-sm font-medium leading-6 text-gray-900">
+                  Danger
+                </label>
+              </div>
+              <div class="flex items-center">
+                <input
+                  id="warning"
+                  name="alert-type"
+                  type="radio"
+                  class="w-4 h-4 border-gray-300 text-primary-600 focus:ring-primary-600"
+                />
+                <label
+                  for="warning"
+                  class="block ml-3 text-sm font-medium leading-6 text-gray-900"
+                >
+                  Warning
+                </label>
+              </div>
+              <div class="flex items-center">
+                <input
+                  id="information"
+                  name="alert-type"
+                  type="radio"
+                  class="w-4 h-4 border-gray-300 text-primary-600 focus:ring-primary-600"
+                />
+                <label
+                  for="information"
+                  class="block ml-3 text-sm font-medium leading-6 text-gray-900"
+                >
+                  Information
+                </label>
+              </div>
+              <div class="flex items-center">
+                <input
+                  id="success"
+                  name="alert-type"
+                  type="radio"
+                  class="w-4 h-4 border-gray-300 text-primary-600 focus:ring-primary-600"
+                />
+                <label
+                  for="success"
+                  class="block ml-3 text-sm font-medium leading-6 text-gray-900"
+                >
+                  Success
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div>
+          <div class="flex h-6 items-center space-x-2.5">
+            <input
+              id="dismiss"
+              aria-describedby="dismiss-description"
+              name="dismiss"
+              type="checkbox"
+              class="w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-600"
+            />
+            <label for="dismiss" class="text-sm font-medium text-primary-600">
+              Allow dismiss action
+            </label>
+          </div>
+        </div>
+      </div>
+      <!-- expiry date -->
+      <div>
+        <label for="expiry_date" class="inline-block text-sm font-medium leading-6 text-gray-900">
+          Expiry date
+        </label>
+        <div class="relative mt-1.5 rounded-md shadow-sm">
+          <input
+            type="date"
+            name="expiry_date"
+            id="expiry_date"
+            class="block w-full rounded-md border-0 py-1.5  text-primary-600 ring-1 ring-inset ring-gray-300 placeholder:text-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+      <div class="flex items-center space-x-2.5 mb-5" x-data="{toggleOn: false}">
+        <button
+          id="publish_the_announcement"
+          type="button"
+          class="relative inline-flex flex-shrink-0 h-6 transition-colors duration-200 ease-in-out bg-gray-300 border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+          role="switch"
+          aria-checked="false"
+          x-on:click="toggleOn = !toggleOn"
+          x-bind:class="{'bg-primary-600': toggleOn, 'bg-gray-300': !toggleOn}"
+        >
+          <span class="sr-only">Use setting</span>
+          <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+          <span
+            aria-hidden="true"
+            class="inline-block w-5 h-5 transition duration-200 ease-in-out bg-white rounded-full shadow pointer-events-none ring-0"
+            x-bind:class="{'translate-x-0': !toggleOn, 'translate-x-[100%]': toggleOn}"
+          >
+          </span>
+        </button>
+        <label for="publish_the_announcement" class="text-sm font-medium text-primary-500">
+          Publish the announcement
+        </label>
+      </div>
+      <div class="flex items-center justify-end space-x-3">
+        <.link
+          href={~p"/admin/announcements"}
+          class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 bg-white border border-gray-300 rounded-md shadow-sm text-primary-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+        >
+          Cancel
+        </.link>
+        <.link
+          href={~p"/admin/announcements/1/preview"}
+          class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white border rounded-md shadow-sm border-primary-500 bg-primary-500 hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+        >
+          Save and preview
+        </.link>
+      </div>
+    </div>
+  </div>
+</div>

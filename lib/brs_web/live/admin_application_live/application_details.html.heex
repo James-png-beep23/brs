@@ -1,0 +1,193 @@
+<div class="mt-0 px-0 pb-0 mb-0">
+  <div class="md:flex justify-between items-center md:space-x-3 space-y-2 md:space-y-0 mb-3">
+    <p class="text-lg sm:text-xl lg:text-xl font-semibold leading-none text-primary-500 mb-0">
+      Application Details
+    </p>
+    <div class="flex items-center space-x-2">
+      <a
+        type="button"
+        class="inline-flex items-center space-x-2 rounded-md border-0 border-gray-300 px-3 py-2 text-sm font-medium cursor-pointer leading-4 text-gray-700 hover:underline"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+        >
+          <path
+            d="M6.66602 14.1667L9.99935 17.5M9.99935 17.5L13.3327 14.1667M9.99935 17.5V10M16.666 13.9524C17.6839 13.1117 18.3327 11.8399 18.3327 10.4167C18.3327 7.88536 16.2807 5.83333 13.7493 5.83333C13.5673 5.83333 13.3969 5.73833 13.3044 5.58145C12.2177 3.73736 10.2114 2.5 7.91602 2.5C4.46424 2.5 1.66602 5.29822 1.66602 8.75C1.66602 10.4718 2.36222 12.0309 3.48847 13.1613"
+            stroke="#344054"
+            stroke-width="1.66667"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span>JSON</span>
+      </a>
+      <a
+        type="button"
+        class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium cursor-pointer leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      >
+        Generate epp1 Form
+      </a>
+    </div>
+  </div>
+
+  <div>
+    <!-- mobile Tabs -->
+    <div class="lg:hidden mb-6">
+      <label for="mobile_tabs" class="sr-only">Select a tab</label>
+      <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+      <form phx-change="change_tab" phx-target={@myself}>
+        <select
+            id="tabs"
+            name="index"
+            class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
+          >
+            <%= for tab <- @form.pages do %>
+              <option value={tab.title}>
+                <%= tab.title %>
+              </option>
+            <% end %>
+        </select>
+      </form>
+    </div>
+
+    <!-- desktop Tabs -->
+    <div class="hidden lg:block">
+      <div class="border-b border-gray-300 mb-5">
+        <nav>
+          <div class="flex space-x-5" aria-label="Tabs">
+            <%= for tab <- @form.pages do %>
+              <a
+                href="#"
+                phx-click="change_tab"
+                phx-value-index={tab.title}
+                phx-target={@myself}
+                class={"#{if tab.title == @active_tab, do: 'border-primary-500 text-primary-500', else: 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}
+                                    whitespace-nowrap pb-3 px-1 border-b-2 font-medium text-sm inline-block mr-3 lg:mr-3 xl:mr-4"}
+                aria-current={if tab.title, do: "page", else: "false"}
+              >
+                <%= tab.title %>
+              </a>
+            <% end %>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <%= for tab <- @form.pages do %>
+        <section :if={@active_tab == tab.title} id={tab.title} class="tab-content">
+          <div class="space-y-4">
+            <div class="grid grid-cols-4 bg-white overflow-hidden shadow-sm rounded-lg">
+              <div class="col-span-4 border-b border-gray-200 px-4 sm:px-4 py-4 sm:py-4 flex items-center justify-start space-x-4">
+                <%= for field <- tab.fields do %>
+                <div class="grid grid-cols-4 gap-y-4 xl:gap-y-0 gap-x-3 items-center">
+                  <div class="col-span-4 sm:col-span-2 xl:col-span-1">
+                    <p class="text-sm text-gray-500 font-medium mb-1">
+                      <%= field.name %>
+                    </p>
+                    <p class="text-base sm:text-base font-medium text-gray-900 ">
+                      <%= Map.get(@form_data, field.name) %>
+                    </p>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </section>
+      <% end %>
+    </div>
+
+    <div>
+      <!-- tab 2 -->
+      <section id="applicant" class="tab-content">
+        <div class="space-y-4">
+
+          <div class="bg-white shadow-sm rounded-lg h-min">
+            <div class="items-center px-4 py-3 border-b border-gray-200">
+              <p class="text-base font-semibold text-primary-500 m-0">
+                Downloads
+              </p>
+            </div>
+            <div class="divide-y divide-gray-200">
+              <div class="px-4 py-4 lg:space-x-2 space-y-3 lg:space-y-0 lg:flex justify-between items-center">
+                <div class="items-center">
+                  <p class="text-sm font-medium text-gray-700 m-0">
+                    Name Reservation Certificate
+                  </p>
+                  <p class="text-sm text-gray-500 font-normal m-0">
+                    Fri 10 May 2022, 12:25:31 PM
+                  </p>
+                </div>
+                <div class="flex lg:justify-center items-center space-x-3">
+                  <button
+                    type="button"
+                    class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm space-x-2 font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                  >
+                    <span>Download</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="18"
+                      viewBox="0 0 20 18"
+                      fill="none"
+                    >
+                      <path
+                        d="M6.66699 13.1667L10.0003 16.5M10.0003 16.5L13.3337 13.1667M10.0003 16.5V9M16.667 12.9524C17.6849 12.1117 18.3337 10.8399 18.3337 9.41667C18.3337 6.88536 16.2816 4.83333 13.7503 4.83333C13.5682 4.83333 13.3979 4.73833 13.3054 4.58145C12.2187 2.73736 10.2124 1.5 7.91699 1.5C4.46521 1.5 1.66699 4.29822 1.66699 7.75C1.66699 9.47175 2.3632 11.0309 3.48945 12.1613"
+                        stroke="#344054"
+                        stroke-width="1.66667"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="px-4 py-4 lg:space-x-2 space-y-3 lg:space-y-0 lg:flex justify-between items-center">
+                <div class="items-center">
+                  <p class="text-sm font-medium text-gray-700 m-0">
+                    Receipt
+                  </p>
+                  <p class="text-sm text-gray-500 font-normal m-0">
+                    Fri 10 May 2022, 12:25:31 PM
+                  </p>
+                </div>
+                <div class="flex lg:justify-center items-center space-x-3">
+                  <button
+                    type="button"
+                    class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm space-x-2 font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                  >
+                    <span>Download</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="18"
+                      viewBox="0 0 20 18"
+                      fill="none"
+                    >
+                      <path
+                        d="M6.66699 13.1667L10.0003 16.5M10.0003 16.5L13.3337 13.1667M10.0003 16.5V9M16.667 12.9524C17.6849 12.1117 18.3337 10.8399 18.3337 9.41667C18.3337 6.88536 16.2816 4.83333 13.7503 4.83333C13.5682 4.83333 13.3979 4.73833 13.3054 4.58145C12.2187 2.73736 10.2124 1.5 7.91699 1.5C4.46521 1.5 1.66699 4.29822 1.66699 7.75C1.66699 9.47175 2.3632 11.0309 3.48945 12.1613"
+                        stroke="#344054"
+                        stroke-width="1.66667"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+</div>

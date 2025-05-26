@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" style="scrollbar-gutter: stable;" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://kbrs.pesaflow.com/resources/download/brs"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://kbrs.pesaflow.com/resources/download/brs"
+    />
+    <!-- Bootstrap core and app styles -->
+    <link rel="stylesheet" href="https://kbrs.pesaflow.com/css/vendors~admin~app.css" />
+    <!-- Styles required by this views -->
+  </head>
+  <body class="overflow-x-hidden bg-gray-100 scroll">
+    <div class="min-h-full pb-20 bg-backdrop lg:pb-0">
+      <!-- TopNav Start -->
+      <.top_nav current_user={@current_user} />
+      <!-- main menu section -->
+      <.main_menu
+        registries={BrsWeb.Menus.registries_menu(@all_registries)}
+        current_registry={@current_registry}
+      />
+      <!-- main menu section -->
+      <%= if @current_business do %>
+        <.business_breadcrumbs />
+      <% end %>
+      <!-- mobile individual profile section -->
+      <section class="block p-4 mx-auto max-w-8xl lg:hidden">
+        <div
+          x-data="{dropdownOpen: false}"
+          class="relative block bg-white border-b-4 border-[#0A2543] after:content-[''] after:absolute after:right-0 after:bottom-0 after:h-1 after:bg-[#ED2926] after:sm:w-64 after:w-24 after:-mb-1"
+        >
+          <div class="relative w-full">
+            <div class="flex items-start justify-between px-4 py-3 border-b border-primary-910">
+              <div class="flex items-center">
+                <div class="w-12 h-12 overflow-hidden border rounded-full border-primary-910">
+                  <img
+                    class="min-w-full min-h-full"
+                    src="https://kbrs.pesaflow.com/images/ico-av-male-9b71320fc28c42ee0240a3d2519bfd26.svg?vsn=d"
+                    alt=""
+                  />
+                </div>
+                <div class="ml-3">
+                  <p class="text-base font-semibold text-primary-500">Victor Oluoch</p>
+                  <p class="text-xs font-medium text-gray-900 uppercase">CITIZEN</p>
+                </div>
+              </div>
+              <div class="ml-auto">
+                <button
+                  x-on:click="dropdownOpen = !dropdownOpen"
+                  class="p-1 text-[#C9CED5] rounded border border-[#C9CED5] h-5 w-5 focus:border-transparent focus:outline-none focus-within:text-primary-500 focus:ring-1 focus:ring-primary-500"
+                >
+                  <svg
+                    x-bind:class="dropdownOpen ? 'rotate-180 transform' : 'rotate-0 transform'"
+                    class="h-1.5 w-2.5 transition-transform ease-linear duration-300 rotate-0"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                      d="M.293.293a1 1 0 0 1 1.414 0L5 3.586 8.293.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414Z"
+                      clip-rule="evenodd"
+                    >
+                    </path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div
+              x-cloak
+              x-show="dropdownOpen"
+              class="px-4 py-4 transition-transform duration-300 ease-linear border-b bg-backdrop border-primary-910"
+            >
+              <dl class="grid gap-6 grid-col-1 sm:grid-cols-3 xl:grid-cols-5">
+                <div class="col-span-1">
+                  <dt class="text-xs font-medium leading-3 text-gray-500">ID Number.</dt>
+                  <dd class="mt-1.5 text-base leading-4 text-primary-500 font-medium">
+                    31939070
+                  </dd>
+                </div>
+                <div class="col-span-1">
+                  <dt class="text-xs font-medium leading-3 text-gray-500">Phone Number</dt>
+                  <dd class="mt-1.5 text-base leading-4 text-primary-500 font-medium">
+                    +254722727272
+                  </dd>
+                </div>
+                <div class="col-span-1">
+                  <dt class="text-sm text-gray-500">Email Address</dt>
+                  <dd class="text-base font-medium lowercase text-primary-500">
+                    victorotieno598@gmail.com
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+          <div class="flex items-center justify-between px-4 py-2 space-x-4">
+            <div class="flex-1">
+              <p class="mt-0 text-sm font-medium text-gray-600">Companies Registry Services</p>
+            </div>
+            <div>
+              <button
+                x-data="{usedKeyboard: false}"
+                @keydown.window.tab="usedKeyboard = true"
+                @click="$dispatch('open-menu', { open: true })"
+                class="{'focus:outline-none': !usedKeyboard}"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="12"
+                  viewBox="0 0 14 12"
+                  fill="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M0 1C0 0.447715 0.447715 0 1 0H13C13.5523 0 14 0.447715 14 1C14 1.55228 13.5523 2 13 2H1C0.447715 2 0 1.55228 0 1Z"
+                    fill="#111827"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M0 6C0 5.44772 0.447715 5 1 5H13C13.5523 5 14 5.44772 14 6C14 6.55228 13.5523 7 13 7H1C0.447715 7 0 6.55228 0 6Z"
+                    fill="#111827"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M0 11C0 10.4477 0.447715 10 1 10H13C13.5523 10 14 10.4477 14 11C14 11.5523 13.5523 12 13 12H1C0.447715 12 0 11.5523 0 11Z"
+                    fill="#111827"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="absolute inset-x-0 top-0 bottom-0 border border-b-0 border-gray-300 rounded-tl-lg rounded-tr-lg pointer-events-none">
+          </div>
+        </div>
+      </section>
+      <!-- mobile individual profile section -->
+      <section class="hidden sm:block"></section>
+      <!-- TopNav End -->
+      <section class="px-4 mx-auto max-w-8xl lg:px-5 xl:px-6">
+        <div class="pt-4 pb-4 mx-auto md:pt-8 lg:grid lg:grid-cols-7 xl:grid-cols-12 lg:gap-4 xl:gap-6">
+          <!-- Sidebar Menu Start -->
+          <!-- Desktop Sidebar Nav -->
+          <!-- Sidebar -->
+          <!-- Desktop Sidebar Nav -->
+          <%= if @current_business do %>
+            <BrsWeb.AdminSidebar.business_sidebar
+              current_path={@current_uri.path}
+              current_user={@current_user}
+              registries={
+                BrsWeb.Menus.business_sidebar_items(
+                  String.to_atom(@current_registry.slug),
+                  @current_business
+                )
+              }
+              current_registry={@current_registry}
+            />
+          <% else %>
+            <BrsWeb.AdminSidebar.registry_sidebar
+              current_path={@current_uri.path}
+              current_user={@current_user}
+              registries={
+                BrsWeb.Menus.registry_sidebar_items(String.to_atom(@current_registry.slug))
+              }
+              current_registry={@current_registry}
+            />
+          <% end %>
+          <!-- Sidebar End -->
+          <!-- Sidebar Menu End -->
+          <!-- Content Area Start -->
+          <%= @inner_content %>
+          <!-- Content Area End -->
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

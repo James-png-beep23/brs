@@ -1,0 +1,197 @@
+<div class="px-4 space-y-6 sm:px-5 lg:px-6 md:space-y-6">
+  <div class="px-0 pb-0 mt-0 mb-0">
+    <div class="items-center justify-between mb-3 space-y-2 md:flex md:space-x-3 md:space-y-0">
+      <div>
+        <p class="mb-1 text-lg font-semibold leading-none sm:text-xl lg:text-2xl text-primary-500">
+          Access Control
+        </p>
+        <p class="mt-0 text-sm text-gray-500">
+          View all roles and permissions for the current registry.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <!-- mobile Tabs -->
+      <div class="mb-6 lg:hidden">
+        <label for="tabs" class="sr-only">Select a tab</label>
+        <select
+          id="tabs"
+          name="tabs"
+          x-model="mobileActiveTab"
+          @change="tabs.forEach(tab => tab.active = false)"
+          class="block w-full py-2 pl-3 pr-10 text-base border-gray-300 rounded-md focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
+        >
+          <template x-for="(tab, ix) in tabs" x-bind:key="tab.id">
+            <option x-bind:value="tab.id" x-text="tab.title"></option>
+          </template>
+        </select>
+      </div>
+      <!-- desktop Tabs -->
+      <div class="hidden lg:block">
+        <div class="mb-5 border-b border-gray-300">
+          <nav>
+            <div class="flex space-x-5" aria-label="Tabs">
+              <%= for tab <- @tabs do %>
+                <a
+                  href="#"
+                  phx-click="change_tab"
+                  phx-value-index={tab.id}
+                  class={"#{if tab.id == @active_tab, do: 'border-primary-500 text-primary-500', else: 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}
+                                    whitespace-nowrap pb-3 px-1 border-b-2 font-medium text-sm inline-block mr-3 lg:mr-3 xl:mr-4"}
+                  aria-current={if tab.id, do: "page", else: "false"}
+                >
+                  <%= tab.title %>
+                </a>
+              <% end %>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <div>
+        <!-- tab 1 -->
+        <section :if={@active_tab == 1} id="roles" class="tab-content">
+          <div class="space-y-4 md:space-y-4">
+            <div class="flex justify-end">
+              <button
+                phx-click="toggle_modal"
+                type="button"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white border rounded-md shadow-sm border-primary-500 bg-primary-500 hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+              >
+                Add Role
+              </button>
+            </div>
+            <div>
+              <!-- table content -->
+              <div class="flex flex-col mb-4">
+                <div class="sm:overflow-auto lg:overflow-visible">
+                  <!-- Table Desktop -->
+                  <div class="hidden w-full align-middle sm:block">
+                    <div class="pb-4 divide-y divide-gray-200 rounded-lg shadow sm:overflow-x-auto ring-1 ring-black ring-opacity-5 sm:pb-0">
+                      <table class="min-w-full divide-y divide-gray-300 table-auto">
+                        <thead class="bg-gray-50">
+                          <tr>
+                            <th
+                              scope="col"
+                              class="py-2.5 pl-4 pr-3 text-left text-sm font-medium text-gray-600 sm:pl-4"
+                            >
+                              Name
+                            </th>
+                            <th
+                              scope="col"
+                              class="px-3 py-2.5 text-sm font-medium text-gray-600 text-right"
+                            >
+                              Action
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                          <%= for role <- @roles do %>
+                            <tr>
+                              <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-4">
+                                <div class="inline-flex items-center space-x-1">
+                                  <p class="text-sm font-medium text-gray-900">
+                                    <%= role.name %>
+                                  </p>
+                                </div>
+                              </td>
+                              <td class="px-4 py-4 text-sm text-right text-gray-500 whitespace-nowrap">
+                                <div class="inline-flex items-center justify-end space-x-3 text-right">
+                                  <a
+                                    href={
+                                      ~p"/admin/registries/#{@current_registry.slug}/security/roles/#{role.id}"
+                                    }
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 bg-white border rounded-md shadow-sm border-primary-500 text-primary-500 hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+                                  >
+                                    View
+                                  </a>
+                                </div>
+                              </td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- tab 2 -->
+        <section :if={@active_tab == 2} id="permissions" class="tab-content">
+          <div class="space-y-4 md:space-y-4">
+            <div>
+              <!-- table content -->
+              <div class="flex flex-col mb-4">
+                <div class="sm:overflow-auto lg:overflow-visible">
+                  <!-- Table Desktop -->
+                  <div class="hidden w-full align-middle sm:block">
+                    <div class="pb-4 divide-y divide-gray-200 rounded-lg shadow sm:overflow-x-auto ring-1 ring-black ring-opacity-5 sm:pb-0">
+                      <table class="min-w-full divide-y divide-gray-300 table-auto">
+                        <thead class="bg-gray-50">
+                          <tr>
+                            <th
+                              scope="col"
+                              class="py-2.5 pl-4 pr-3 text-left text-sm font-medium text-gray-600 sm:pl-4"
+                            >
+                              Name
+                            </th>
+                            <th
+                              scope="col"
+                              class="px-3 py-2.5 text-sm font-medium text-gray-600 text-right"
+                            >
+                              Action
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                          <%= for permission <- @permissions do %>
+                            <tr>
+                              <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-4">
+                                <div class="inline-flex items-center space-x-1">
+                                  <p class="text-sm font-medium text-gray-900">
+                                    <%= permission.name %>
+                                  </p>
+                                </div>
+                              </td>
+                              <td class="px-4 py-4 text-sm text-right text-gray-500 whitespace-nowrap">
+                                <div class="inline-flex items-center justify-end space-x-3 text-right">
+                                  <a
+                                    href={
+                                      ~p"/admin/registries/#{@current_registry.slug}/security/permissions/#{permission.key}"
+                                    }
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 bg-white border rounded-md shadow-sm border-primary-500 text-primary-500 hover:bg-primary-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+                                  >
+                                    View
+                                  </a>
+                                </div>
+                              </td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div :if={@show_modal}>
+    <.live_component
+      module={BrsWeb.AccessControlLive.FormComponent}
+      id={:new}
+      action={:new}
+      type="roles"
+      current_registry={@current_registry}
+      role={%Brs.Accounts.Role{}}
+      current_registry_permissions={@current_registry_permissions}
+    />
+  </div>
+</div>

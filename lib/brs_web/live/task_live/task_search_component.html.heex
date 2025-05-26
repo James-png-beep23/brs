@@ -1,0 +1,565 @@
+<div>
+  <div class="mb-4 space-x-3 md:flex md:justify-between md:items-end">
+    <div class="flex-1">
+      <form class="flex w-full md:ml-0" action="#" method="GET">
+        <label for="search-field" class="sr-only">Search</label>
+        <div class="relative w-full text-gray-400 bg-white rounded-full focus-within:text-gray-600">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.5 17.5L14.5834 14.5833M16.6667 9.58333C16.6667 13.4954 13.4954 16.6667 9.58333 16.6667C5.67132 16.6667 2.5 13.4954 2.5 9.58333C2.5 5.67132 5.67132 2.5 9.58333 2.5C13.4954 2.5 16.6667 5.67132 16.6667 9.58333Z"
+                stroke="#9CA3AF"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+              </path>
+            </svg>
+          </div>
+          <input
+            id="search-field"
+            value=""
+            class="block w-full py-2 pl-10 pr-3 leading-5 text-gray-900 placeholder-gray-400 bg-white border border-gray-300 rounded-full focus:border-white focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-500 sm:text-sm"
+            placeholder="Search by name, reg no"
+            type="search"
+            name="search"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="flex flex-col mt-0 space-y-4 md:mt-0 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-3">
+      <button
+        phx-click="toggle_filters_modal"
+        phx-target={@myself}
+        type="button"
+        class="inline-flex items-center justify-center px-3 py-2 space-x-4 text-sm font-medium leading-5 text-gray-700 bg-white border border-gray-300 rounded-full shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="12"
+          viewBox="0 0 18 12"
+          fill="none"
+        >
+          <path
+            d="M4 6H14M1.5 1H16.5M6.5 11H11.5"
+            stroke="#344054"
+            stroke-width="1.66667"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span>Filter by Service</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-start gap-2">
+    <span class="flex items-center px-3 py-1 space-x-2 rounded-full bg-slate-200">
+      <span class="text-sm font-medium text-slate-500 whitespace-nowrap">
+        Business Name Registration
+      </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="10"
+        height="10"
+        viewBox="0 0 10 10"
+        fill="none"
+      >
+        <g clip-path="url(#clip0_640_286671)">
+          <path
+            d="M8.75 1.25L1.25 8.75M1.25 1.25L8.75 8.75L1.25 1.25Z"
+            stroke="#999EAA"
+            stroke-width="1.875"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_640_286671">
+            <rect width="10" height="10" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </span>
+
+    <span class="flex items-center px-3 py-1 space-x-2 rounded-full bg-slate-200">
+      <span class="text-sm font-medium text-slate-500 whitespace-nowrap">
+        Limited liability partnership registration
+      </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="10"
+        height="10"
+        viewBox="0 0 10 10"
+        fill="none"
+      >
+        <g clip-path="url(#clip0_640_286672)">
+          <path
+            d="M8.75 1.25L1.25 8.75M1.25 1.25L8.75 8.75L1.25 1.25Z"
+            stroke="#999EAA"
+            stroke-width="1.875"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_640_286672">
+            <rect width="10" height="10" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </span>
+
+    <span class="flex items-center px-3 py-1 space-x-2 rounded-full bg-slate-200">
+      <span class="text-sm font-medium text-slate-500 whitespace-nowrap">
+        Company Limited by Guarantee Regsitration
+      </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="10"
+        height="10"
+        viewBox="0 0 10 10"
+        fill="none"
+      >
+        <g clip-path="url(#clip0_640_286673)">
+          <path
+            d="M8.75 1.25L1.25 8.75M1.25 1.25L8.75 8.75L1.25 1.25Z"
+            stroke="#999EAA"
+            stroke-width="1.875"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_640_286673">
+            <rect width="10" height="10" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </span>
+
+    <span class="flex items-center px-3 py-1 space-x-2 rounded-full bg-slate-200">
+      <span class="text-sm font-medium text-slate-500 whitespace-nowrap">
+        Foreign Company Registration
+      </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="10"
+        height="10"
+        viewBox="0 0 10 10"
+        fill="none"
+      >
+        <g clip-path="url(#clip0_640_286674)">
+          <path
+            d="M8.75 1.25L1.25 8.75M1.25 1.25L8.75 8.75L1.25 1.25Z"
+            stroke="#999EAA"
+            stroke-width="1.875"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_640_286674">
+            <rect width="10" height="10" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </span>
+
+    <span class="flex items-center px-3 py-1 space-x-2 rounded-full bg-slate-200">
+      <span class="text-sm font-medium text-slate-500 whitespace-nowrap">
+        Official Search
+      </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="10"
+        height="10"
+        viewBox="0 0 10 10"
+        fill="none"
+      >
+        <g clip-path="url(#clip0_640_286675)">
+          <path
+            d="M8.75 1.25L1.25 8.75M1.25 1.25L8.75 8.75L1.25 1.25Z"
+            stroke="#999EAA"
+            stroke-width="1.875"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_640_286675">
+            <rect width="10" height="10" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </span>
+
+    <button class="flex items-center px-3 py-1 space-x-2 rounded-full">
+      <span class="text-sm font-medium text-primary-500 hover:underline whitespace-nowrap">
+        Clear filters
+      </span>
+    </button>
+  </div>
+  <div :if={@show_filters_modal} id="task-filters-modal">
+    <div class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <!-- Background backdrop, show/hide based on modal state. -->
+      <div class="fixed inset-0 transition-opacity bg-gray-700 bg-opacity-75 backdrop-filter backdrop-blur-sm">
+      </div>
+
+      <div class="fixed inset-0 z-50 overflow-y-auto">
+        <div class="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
+          <!-- Modal panel, show/hide based on modal state.  -->
+          <div class="relative px-4 pt-5 pb-4 text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-xl sm:p-6">
+            <div class="flex items-start justify-between space-x-3">
+              <h1 class="m-0 mb-4 text-lg font-semibold text-gray-700">
+                Filter tasks by service
+              </h1>
+
+              <button phx-click="toggle_filters_modal" phx-target={@myself}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                >
+                  <path
+                    d="M13 1L1 13M1 1L13 13"
+                    stroke="#667085"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <form class="space-y-4">
+              <div class="flex w-full md:ml-0" action="#" method="GET">
+                <label for="search-field" class="sr-only">Search</label>
+                <div class="relative w-full text-gray-400 bg-white rounded-full focus-within:text-gray-600">
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-0 pointer-events-none">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.5 17.5L14.5834 14.5833M16.6667 9.58333C16.6667 13.4954 13.4954 16.6667 9.58333 16.6667C5.67132 16.6667 2.5 13.4954 2.5 9.58333C2.5 5.67132 5.67132 2.5 9.58333 2.5C13.4954 2.5 16.6667 5.67132 16.6667 9.58333Z"
+                        stroke="#9CA3AF"
+                        stroke-width="1.66667"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                      </path>
+                    </svg>
+                  </div>
+                  <input
+                    id="search-field"
+                    value=""
+                    class="block w-full pt-2 pl-8 pr-3 leading-5 text-gray-900 placeholder-gray-400 bg-white border border-t-0 border-l-0 border-r-0 border-gray-300 focus:border-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-1 focus:ring-gray-500 sm:text-base"
+                    placeholder="Search"
+                    type="search"
+                    name="search"
+                  />
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="comments"
+                    checked
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="comments" class="font-medium text-gray-900">
+                    Business Name Registration
+                  </label>
+                  <span id="comments-description" class="text-gray-500">
+                    <span class="sr-only">Business Name Registration</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="limited-liability"
+                    checked
+                    aria-describedby="comments-description"
+                    name="limited-liability"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="limited-liability" class="font-medium text-gray-900">
+                    Limited Liability Partnership Registration
+                  </label>
+                  <span id="limited-liability" class="text-gray-500">
+                    <span class="sr-only">Limited Liability Partnership Registration</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="company-limited"
+                    checked
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="company-limited" class="font-medium text-gray-900">
+                    Company Limited by Guarantee Registration
+                  </label>
+                  <span id="company-limited" class="text-gray-500">
+                    <span class="sr-only">Company Limited by Guarantee Registration</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="foreign-company"
+                    checked
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="foreign-company" class="font-medium text-gray-900">
+                    Foreign Company Registration
+                  </label>
+                  <span id="foreign-company" class="text-gray-500">
+                    <span class="sr-only">Foreign Company Registration</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="foreign-company"
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="foreign-company" class="font-medium text-gray-900">
+                    Limited Partnership Registration
+                  </label>
+                  <span id="foreign-company" class="text-gray-500">
+                    <span class="sr-only">Limited Partnership Registration</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="private-limited-company"
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="private-limited-company" class="font-medium text-gray-900">
+                    Private Limited Company Registration
+                  </label>
+                  <span id="private-limited-company" class="text-gray-500">
+                    <span class="sr-only">Private Limited Company Registration</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="foreign-company"
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="foreign-company" class="font-medium text-gray-900">
+                    Public Limited Company Registration
+                  </label>
+                  <span id="foreign-company" class="text-gray-500">
+                    <span class="sr-only">Public Limited Company Registration</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="foreign-company"
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="foreign-company" class="font-medium text-gray-900">
+                    Official Search
+                  </label>
+                  <span id="foreign-company" class="text-gray-500">
+                    <span class="sr-only">Official Search</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="foreign-company"
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="foreign-company" class="font-medium text-gray-900">
+                    Application To Be Licensed as a Hire Purchase Business
+                  </label>
+                  <span id="foreign-company" class="text-gray-500">
+                    <span class="sr-only">
+                      Application To Be Licensed as a Hire Purchase Business
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="foreign-company"
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="foreign-company" class="font-medium text-gray-900">
+                    Debtor’s Petition
+                  </label>
+                  <span id="foreign-company" class="text-gray-500">
+                    <span class="sr-only">Debtor’s Petition</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="foreign-company"
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="foreign-company" class="font-medium text-gray-900">
+                    Creditor’s petition
+                  </label>
+                  <span id="foreign-company" class="text-gray-500">
+                    <span class="sr-only">Creditor’s petition</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="foreign-company"
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="foreign-company" class="font-medium text-gray-900">
+                    Individual voluntary arrangement
+                  </label>
+                  <span id="foreign-company" class="text-gray-500">
+                    <span class="sr-only">Individual voluntary arrangement</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="flex items-center h-6">
+                  <input
+                    id="foreign-company"
+                    aria-describedby="comments-description"
+                    name="comments"
+                    type="checkbox"
+                    class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+                  />
+                </div>
+                <div class="ml-3 text-sm leading-6">
+                  <label for="foreign-company" class="font-medium text-gray-900">
+                    Creditors Voluntary Liquidation
+                  </label>
+                  <span id="foreign-company" class="text-gray-500">
+                    <span class="sr-only">Creditors Voluntary Liquidation</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex justify-end pt-4 space-x-3 border-t border-gray-300">
+                <button
+                  type="button"
+                  class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:w-auto"
+                >
+                  Clear filters
+                </button>
+                <button
+                  phx-click="toggle_filters_modal"
+                  phx-target={@myself}
+                  type="button"
+                  class="inline-flex items-center px-4 py-2 text-sm font-medium text-white border rounded-md shadow-sm border-primary-500 bg-primary-500 hover:text-primary-500 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:w-auto"
+                >
+                  Filter
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div>
+  <.form
+    id="registry-form"
+    for={@form}
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save"
+  >
+    <div class="max-w-3xl m-auto space-y-5">
+      <div>
+        <label class="block text-sm font-medium leading-6 text-slate-600">
+          Registry Name
+        </label>
+        <div class="mt-2">
+          <.input
+            field={@form[:name]}
+            type="text"
+            placeholder="Registry Name"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+
+      <div :if={@action in [:new]}>
+        <label class="block text-sm font-medium leading-6 text-slate-600">
+          Slug
+        </label>
+        <div class="mt-2">
+          <.input
+            field={@form[:slug]}
+            type="text"
+            placeholder="Slug"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+
+      <div>
+        <p class="block text-sm font-medium leading-6 text-slate-600">
+          Enabled
+        </p>
+        <.input
+          field={@form[:enabled]}
+          type="checkbox"
+          class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium leading-6 text-slate-600">
+          Description
+        </label>
+        <div class="mt-2">
+          <.input
+            field={@form[:description]}
+            type="textarea"
+            placeholder="Description"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+
+      <div class="pt-0 text-right">
+        <div class="inline-flex items-center space-x-3 sm:justify-center">
+          <a
+            href={~p"/system/registries"}
+            class="inline-flex items-center px-3 py-2 space-x-3 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+          >
+            Cancel
+          </a>
+          <.button
+            type="submit"
+            class="w-2/6 px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+          >
+            Save Changes
+          </.button>
+        </div>
+      </div>
+    </div>
+  </.form>
+</div>

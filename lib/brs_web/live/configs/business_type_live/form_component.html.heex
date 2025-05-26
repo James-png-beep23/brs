@@ -1,0 +1,96 @@
+<div>
+  <.form
+    id="business-type-form"
+    for={@form}
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save"
+  >
+    <div class="max-w-3xl m-auto space-y-5">
+      <div>
+        <label class="block text-sm font-medium leading-6 text-slate-600">
+          Business Type Name
+        </label>
+        <div class="mt-2">
+          <.input
+            field={@form[:name]}
+            type="text"
+            placeholder="Business Type Name"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium leading-6 text-slate-600">
+          Semantic ID
+        </label>
+        <div class="mt-2">
+          <.input
+            field={@form[:semantic_id]}
+            type="text"
+            placeholder="Semantic ID"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+
+      <div>
+        <p class="block text-sm font-medium leading-6 text-slate-600">
+          Has Shareholding
+        </p>
+        <.input
+          field={@form[:has_shareholding]}
+          type="checkbox"
+          class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+        />
+      </div>
+
+      <p class="text-sm font-semibold text-primary-500 hover:text-gray-700">
+        Owner Types
+      </p>
+
+      <div class="flex flex-row flex-wrap items-start justify-start gap-4 py-4">
+        <%= for {owner_type, index} <- Enum.with_index(@owner_types) do %>
+          <div class="relative flex items-start px-3 py-2 rounded-full bg-indigo-50">
+            <div class="flex items-center h-6">
+              <.brs_input
+                id={"owner-type-#{index}"}
+                name={input_name(@form, :business_owner_type_ids) <> "[]"}
+                value={owner_type.id}
+                checked={owner_type_checked?(owner_type.id, @form)}
+                type="checkbox"
+                class="w-4 h-4 border-gray-300 rounded text-primary-500 focus:ring-primary-500"
+              />
+            </div>
+            <div class="ml-2 text-sm leading-6">
+              <label for={"owner-type-#{index}"} class="font-medium text-gray-900">
+                <%= owner_type.name %>
+              </label>
+              <span id={"sr-owner-type-#{index}"} class="text-gray-500">
+                <span class="sr-only"><%= owner_type.name %></span>
+              </span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="pt-0 text-right">
+        <div class="inline-flex items-center space-x-3 sm:justify-center">
+          <a
+            href={~p"/system/business-types"}
+            class="inline-flex items-center px-3 py-2 space-x-3 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+          >
+            Cancel
+          </a>
+          <.button
+            type="submit"
+            class="w-2/6 px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+          >
+            Save Changes
+          </.button>
+        </div>
+      </div>
+    </div>
+  </.form>
+</div>

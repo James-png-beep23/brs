@@ -1,0 +1,62 @@
+<div class="px-4 sm:px-5 lg:px-6 space-y-6 md:space-y-6">
+    <div>
+      <.header>
+        <h2>Business Name Registration Form</h2>
+      </.header>
+    </div>
+
+    <hr>
+
+    <div>
+
+      <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
+          <%= for tab <- @tabs do %>
+            <li class="me-2" role="presentation">
+                <button phx-click="select_tab"
+                phx-value-tab={tab.name} 
+                class="inline-block p-4 border-b-2 rounded-t-lg" 
+                type="button" 
+                role="tab" aria-controls="profile" 
+                aria-selected="false"><%= tab.title %></button>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="bg-white overflow-hidden shadow-sm rounded-lg col-span-12 sm:col-span-5 lg:col-span-4 p-4 space-y-7">
+        <%= for tab <- @tabs do %>
+           <div :if={@active_tab == tab.name}>
+            <.live_component module={tab.mod} id={"bn-reg-#{tab.name}"} />
+          </div>
+        <% end %>
+      </div>
+
+      <!--<div class="bg-white overflow-hidden shadow-sm rounded-lg col-span-12 sm:col-span-5 lg:col-span-4 p-4 space-y-7">
+        <div class="md:flex">
+            <ul class="w-1/6 flex flex-col space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
+              <%= for tab <- @tabs do %>
+                <li>
+                  <a
+                    href="#"
+                    phx-click="select_tab"
+                    phx-value-tab={tab.name}
+                    class={
+                    "inline-flex items-center px-4 py-3 rounded-lg w-full " <>
+                    if @active_tab == tab.name,
+                        do: "text-white bg-primary dark:bg-primary-600",
+                        else: "bg-gray-50 hover:bg-gray-100 text-gray-500 hover:text-gray-900 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
+                  }
+                    aria-current="page"
+                  >
+                    <%= tab.title %>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+      </div> -->
+    
+    </div>
+  </div>
+  
